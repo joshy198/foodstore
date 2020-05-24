@@ -3,6 +3,7 @@ import {Category} from '../model/category';
 import {Injectable} from '@angular/core';
 import {CartItem} from '../model/cart';
 import {ProductProperty} from '../model/product-property';
+import {LocalStorageService} from "./localstorage.service";
 
 @Injectable()
 export class CoreDataService {
@@ -15,7 +16,7 @@ export class CoreDataService {
 
   // private performedPurchases: Product[];
 
-  public constructor() {
+  public constructor(private persistencyService: LocalStorageService) {
      this.fillWithDummyData();
   }
 
@@ -59,10 +60,11 @@ export class CoreDataService {
 
   public set currentCart(cart: CartItem[]) {
     this.activeCart = cart;
+    this.persistencyService.cart = cart;
   }
 
   public storeCartChange() {
-    // TODO: Store cart
+    this.persistencyService.cart = this.activeCart;
   }
 
   public addToCart(p: Product): boolean {
@@ -79,24 +81,25 @@ export class CoreDataService {
       this.activeCart.push(new CartItem(p));
       ret = true;
     }
+    this.persistencyService.cart = this.activeCart;
     return ret;
   }
 
 
   public get favouriteProducts(): Product[] {
-    return [];
+    return this.persistencyService.productFavourites;
   }
 
   public set favouriteProducts(p: Product[]) {
-    //TODO: store fav products
+    this.persistencyService.updateFavouriteProducts(p);
   }
 
   public get favouriteCategories(): Category[] {
-    return [];
+    return this.persistencyService.categoryFavourites;
   }
 
   public set favouriteCategories(c: Category[]) {
-    //TODO: store fav categories
+    this.persistencyService.updateFavouriteCategories(c);
   }
 
   // creating dataset to work with (fake server)
