@@ -1,0 +1,75 @@
+@import "../../../../styles";
+
+cp-language {
+  display: flex;
+  flex-direction: column;
+  width: 7.5rem;
+
+  .languageBt {
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    padding-right: 0.5rem;
+    display: flex;
+    font-size: large;
+    color: $color-font-light;
+    transition: background-color 200ms;
+
+    &.active {
+      background-color: $color-primary-light;
+    }
+  }
+
+  .languageBt:hover {
+    background-color: $color-primary-light;
+  }
+
+  .icon {
+    display: flex;
+    width: 4rem;
+    height: 4rem;
+    cursor: pointer;
+
+    &.language {
+      background-image: url(../../../../assets/language.svg);
+      background-size: cover;
+    }
+  }
+
+  .languageSelect {
+    display: flex;
+    flex-direction: column;
+
+    .arrow-up {
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 50px solid $color-primary;
+    }
+
+    .lang {
+      display: flex;
+      justify-content: center;
+      font-size: $font-size-medium;
+      background-color: $color-primary;
+      color: $color-font-light;
+      width: 7.5rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      cursor: pointer;
+      transition: background-color 200ms;
+
+      &.active {
+        background-color: $color-primary-light;
+      }
+    }
+
+    .lang:hover {
+      background-color: $color-primary-lighter;
+    }
+
+    &.hidden {
+      display: none;
+    }
+  }
+}

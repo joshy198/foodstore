@@ -1,0 +1,9 @@
+<div class="languageBt {{expand?'active':''}}" (click)="expand=!expand">
+  <div class="icon language"></div>
+  {{languageService.toViewString(languageService.currentLanguage)}}
+</div>
+<div class="languageSelect" *ngIf="expand">
+  <div class="lang{{language[l]===languageService.currentLanguage?' active':''}}"
+       *ngFor="let l of languageService.availableLanguages"
+       (click)="onLanguageSelected(l)">{{l}}</div>
+</div>

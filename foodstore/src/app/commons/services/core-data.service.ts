@@ -17,6 +17,7 @@ export class CoreDataService {
   // private performedPurchases: Product[];
 
   public constructor(private persistencyService: LocalStorageService) {
+    this.activeCart = this.persistencyService.cart;
      this.fillWithDummyData();
   }
 

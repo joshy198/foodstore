@@ -1,0 +1,69 @@
+@import "../../../styles";
+
+cp-mainview {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  .aligner {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+
+    .regions {
+      margin-top: $header-space;
+      display: flex;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .categories {
+      min-height: 8rem;
+      padding-left: 2rem;
+      background-color: $color-primary-opc10;
+      display: flex;
+      flex-wrap: wrap;
+      grid-gap: 5px;
+    }
+
+    .nothing-to-show {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: center;
+      font-size: $font-size-large;
+      padding: 3rem;
+      margin-top: 15rem;
+      text-align: center;
+      &.no-center{
+        margin-top: unset;
+        text-align: unset;
+      }
+    }
+
+    @media screen and (max-width: $screen-tablet) {
+      .categories {
+        padding-left: unset;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      .nothing-to-show {
+        margin-top: unset;
+      }
+    }
+  }
+
+  .bottom {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+  }
+}

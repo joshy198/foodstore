@@ -1,1 +1,82 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+$color-primary: #0093ad;
+$color-disabled: #a2a2a3;
+$header-height: 5rem;
+$header-space: calc(#{$header-height} + 1rem);
+
+
+$color-positive: #86b918;
+
+$screen-mobile: 540px;
+$screen-tablet: 1025px;
+$screen-pc-medium: 1290px;
+$screen-pc-high: 1920px;
+$screen-pc-uhd: 3840px;
+
+$color-font-primary: #282929;
+$color-font-light: #fafafa;
+
+$color-background: #fafafa;
+$color-background-dark: #f6f6f7;
+$color-background-disabled-lighter: rgba(192, 192, 193, 0.7);
+$color-background-disabled-light: rgba(162, 162, 163, 0.5);
+
+$color-primary-light: #459fb3;
+$color-primary-lighter: #90b6c2;
+$color-primary-lightest: #fdfafa;
+
+$color-primary-opc80: rgba(0, 147, 173, 0.8);
+$color-primary-opc50: rgba(0, 147, 173, 0.5);
+$color-primary-opc20: rgba(0, 147, 173, 0.2);
+$color-primary-opc10: rgba(0, 147, 173, 0.1);
+$color-primary-opc02: rgba(0, 147, 173, 0.02);
+
+
+$font-size-small: 10px;
+$font-size-normal: 15px;
+$font-size-medium-small: 16px;
+$font-size-medium: 18px;
+$font-size-large: 22px;
+$font-size-larger: 26px;
+$font-size-largest: 36px;
+body {
+  background: $color-background-dark;
+  border: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+* {
+  font-family: Helvetica;
+  font-size: $font-size-normal;
+  color: $color-font-primary;
+}
+
+.available {
+  display: flex;
+  width: 1.3rem;
+  height: 1.3rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+@media screen and (max-width: $screen-mobile) {
+  .available {
+    width: 5vw;
+    height: 5vw;
+    margin-right: 1vw;
+    margin-bottom: 1vw;
+  }
+}
+
+@media screen and (min-width: $screen-mobile) and (max-width: $screen-tablet) {
+  .available {
+    width: 1.3rem;
+    height: 1.3rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+
+  }
+}
+

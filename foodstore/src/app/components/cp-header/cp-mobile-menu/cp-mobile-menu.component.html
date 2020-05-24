@@ -1,0 +1,34 @@
+<div class="icon-button" (click)="expanded=!expanded">
+  <div class="icon {{expanded?'back':'menu'}}"></div>
+</div>
+<div class="expandable" *ngIf="expanded" (click)="expanded=false;">
+  <div class="menu" (click)="$event.stopPropagation()">
+    <div class="entry clear no-border"></div>
+    <div class="entry clear"></div>
+    <div class="entry {{activeSection==section.Language?'selected':''}}"
+         (click)="activeSection=section.Language">{{translation.language}}</div>
+    <div class="entry {{activeSection==section.Profile?'selected':''}}"
+         (click)="activeSection=section.Profile">{{translation.profile}}</div>
+    <div class="entry {{activeSection==section.Orders?'selected':''}}"
+         (click)="activeSection=section.Orders">{{translation.orders}}</div>
+  </div>
+  <div class="content" *ngIf="activeSection===section.Language" (click)="$event.stopPropagation()">
+    <div class="content-header">{{translation.language}}</div>
+    <div class="language-picker">
+      <div *ngFor="let lang of languageService.availableLanguages"
+           class="language-item {{language[lang]===languageService.currentLanguage?' active':''}}"
+           (click)="languageService.currentLanguage = language[lang]">
+        {{lang}}
+      </div>
+    </div>
+  </div>
+  <div class="content" *ngIf="activeSection===section.Profile" (click)="$event.stopPropagation()">
+    <div class="content-header">{{translation.profile}}</div>
+  </div>
+  <div class="content" *ngIf="activeSection===section.Orders" (click)="$event.stopPropagation()">
+    <div class="content-header">{{translation.orders}}</div>
+    <div class="order-text">
+      {{translation.noPreviousOrders}}
+    </div>
+  </div>
+</div>

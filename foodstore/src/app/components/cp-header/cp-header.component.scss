@@ -1,0 +1,122 @@
+@import "../../../styles";
+
+cp-header {
+  background: $color-primary;
+  display: flex;
+  flex: 1;
+  height: 5rem;
+  position: fixed;
+  width: 100%;
+
+  .naming {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+
+    .text {
+      display: flex;
+      color: $color-font-light;
+      font-size: $font-size-large;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    &.apple {
+      justify-content: center;
+    }
+  }
+
+
+  .icon-button {
+    display: flex;
+    padding-top: 0.5rem;
+    justify-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: $color-font-light;
+    font-size: $font-size-large;
+    transition: background-color 200ms;
+
+    .icon {
+      display: flex;
+      width: 4rem;
+      height: 4rem;
+      cursor: pointer;
+
+      &.cart {
+        background-image: url(../../../assets/cart.svg);
+        background-size: cover;
+      }
+
+      &.settings {
+        background-image: url(../../../assets/settings.svg);
+        background-size: cover;
+      }
+
+      &.menu {
+        background-image: url(../../../assets/menu.svg);
+        background-size: cover;
+      }
+
+      &.back {
+        background-image: url(../../../assets/back_normal.svg);
+        background-size: cover;
+      }
+
+      &.back-ios {
+        background-image: url(../../../assets/back_ios.svg);
+        background-size: cover;
+      }
+
+      &.profile {
+        background-image: url(../../../assets/person.svg);
+        background-size: cover;
+      }
+
+      &.history {
+        background-image: url(../../../assets/history.svg);
+        background-size: cover;
+      }
+    }
+
+    &.no-text {
+      color: $color-primary;
+    }
+  }
+
+  @media screen and (min-width: $screen-tablet) {
+    .icon-button:hover {
+      background-color: $color-primary-light;
+    }
+  }
+
+  .icon-button:active {
+    transition: 0.3s ease-in;
+    transform: scale(0.9);
+  }
+
+  @media screen and (max-width: $screen-mobile) {
+    .naming {
+      justify-content: flex-start;
+    }
+    .icon-button {
+      display: flex;
+      justify-content: center;
+
+      .icon {
+        display: flex;
+        width: 4rem;
+        height: 4rem;
+
+      }
+    }
+  }
+
+  @media screen and (min-width: $screen-mobile) and (max-width: $screen-tablet) {
+    .naming {
+      justify-content: flex-start;
+    }
+    width: calc(100vw - 2rem);
+    padding-right: 1rem;
+  }
+}

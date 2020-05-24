@@ -1,0 +1,22 @@
+<div class="img-box">
+  <img src="{{cartItem.item.imageUrl}}">
+</div>
+<div class="naming">
+  {{cartItem.item.title}}
+</div>
+<div class="counter-box">
+  <div class="counter">
+    <div class="manipulator remove"
+         (click)="remove()"></div>
+    <div class="number">{{cartItem.amount}}</div>
+    <div class="manipulator add" (click)="add()"></div>
+  </div>
+</div>
+
+<div class="counter-box">
+  <div class="price-tag">{{(cartItem.item.price * cartItem.amount).toLocaleString(languageService.currentLanguage,
+    {minimumFractionDigits: 2}) + ' €'}}</div>
+</div>
+<div class="counter-box">
+  <div class="remover" (click)="removeFromCart.emit()"></div>
+</div>

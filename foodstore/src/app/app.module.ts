@@ -3,6 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {APP_ROUTES} from "./app.routes";
+import {RouterModule} from "@angular/router";
+import {DeviceDetectorModule} from "ngx-device-detector";
+import {CoreDataService} from "./commons/services/core-data.service";
+import {LocalStorageService} from "./commons/services/localstorage.service";
+import {NavigationService} from "./commons/services/navigation.service";
+import {MainviewModule} from "./components/cp-mainview/cp-mainview.module";
 
 @NgModule({
   declarations: [
@@ -10,9 +17,15 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MainviewModule,
+    DeviceDetectorModule.forRoot(),
+    RouterModule.forRoot(APP_ROUTES, {useHash: false, enableTracing: false})
   ],
-  providers: [],
+  providers: [
+    NavigationService,
+    CoreDataService,
+    LocalStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

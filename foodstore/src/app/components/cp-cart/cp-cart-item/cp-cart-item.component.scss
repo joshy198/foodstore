@@ -1,0 +1,151 @@
+@import "../../../../styles";
+
+cp-cart-item {
+  display: flex;
+  cursor: pointer;
+  @media screen and (max-width: $screen-mobile) {
+    height: 6rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+  @media screen and (min-width: $screen-mobile) {
+    padding-left: 5rem;
+    padding-right: 10vw;
+    height: 8rem;
+  }
+  border-bottom: 1.5px solid $color-primary-lighter;
+
+  .img-box {
+    @media screen and (max-width: $screen-mobile) {
+      display: none;
+    }
+    @media screen and (min-width: $screen-mobile) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 120px;
+      height: 120px;
+      margin-right: 10px;
+    }
+
+
+    img {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /*magic*/
+    }
+  }
+
+  .naming {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    font-size: $font-size-large;
+    margin-right: 1rem;
+    margin-left: 1rem;
+
+  }
+
+  .counter-box {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    .counter {
+      display: flex;
+      @media screen and (min-width: $screen-tablet) {
+        margin-right: 2rem;
+      }
+
+      .manipulator {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: $font-size-large;
+        background-color: $color-primary;
+        transition: background-color 200ms;
+        width: 2rem;
+        height: 2rem;
+
+        &.add {
+          background-image: url(../../../../assets/add.svg);
+          background-size: cover;
+        }
+
+        &.remove {
+          background-image: url(../../../../assets/remove.svg);
+          background-size: cover;
+        }
+      }
+
+      @media screen and (min-width: $screen-tablet) {
+        .manipulator:hover {
+          background-color: $color-primary-lighter;
+        }
+      }
+
+      .number {
+        display: flex;
+        @media screen and (max-width: $screen-tablet) {
+          margin-left: 0.5rem;
+          margin-right: 0.5rem;
+        }
+        color: $color-font-primary;
+        font-size: $font-size-large;
+        @media screen and (min-width: $screen-tablet) {
+          margin-left: 1rem;
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+
+  .remover {
+    color: red;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+    width: 3rem;
+    height: 3rem;
+    background-image: url(../../../../assets/close.svg);
+    background-size: cover;
+    transition: background-color 200ms;
+  }
+
+  .price-tag {
+    display: flex;
+    font-size: $font-size-large;
+    width: 7rem;
+    justify-content: flex-end;
+  }
+
+  @media screen and (max-width: $screen-mobile)  {
+    .price-tag {
+      margin-left: 2vw;
+    }
+  }
+
+  @media screen and (min-width: $screen-mobile) and (max-width: $screen-tablet) {
+    .price-tag {
+      margin-left: 3vw;
+      margin-right: 2vw;
+    }
+  }
+
+  @media screen and (min-width: $screen-tablet) {
+    .price-tag {
+      margin-left: 3rem;
+      margin-right: 3rem;
+    }
+    cp-cart-item:hover {
+      background-color: $color-primary-opc02;
+    }
+    .remover:hover {
+      margin-left: 0px;
+      margin-right: 0px;
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+  }
+}

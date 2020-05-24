@@ -1,0 +1,12 @@
+<cp-header [provideBackAction]="true" [headerText]="translations.cart"
+           (fallbackReturnClick)="fallbackBackAction()"></cp-header>
+<div class="padder">
+  <cp-cart-item *ngFor="let c of dataService.currentCart" [cartItem]="c"
+                (propertyChanged)="dataService.storeCartChange()"
+                (removeFromCart)="removeFromCart(c)"></cp-cart-item>
+  <div class="total">
+    <div class="total-text">{{translations.totalPrice}}</div>
+    <div class="total-amount">{{fullPrice.toLocaleString(languageService.currentLanguage,
+      {minimumFractionDigits: 2}) + ' €'}}</div>
+  </div>
+</div>

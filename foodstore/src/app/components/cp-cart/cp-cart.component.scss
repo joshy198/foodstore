@@ -1,0 +1,43 @@
+@import "../../../styles";
+
+cp-cart {
+  .padder {
+    display: flex;
+    flex-direction: column;
+    border-top: $header-space solid transparent;
+  }
+
+  .total {
+
+    display: flex;
+    justify-content: space-between;
+    @media screen and (max-width: calc(#{$screen-mobile} + 220px)) {
+      margin-top: 3rem;
+      margin-left: 1.5rem;
+      margin-right: 4rem;
+    }
+    @media screen and (min-width: calc(#{$screen-mobile} + 220px)) and (max-width: $screen-tablet) {
+      margin-top: 10vh;
+      padding-left: calc(6rem + 130px);
+      padding-right: calc(4.25rem + 10vw);
+    }
+    @media screen and (min-width: $screen-tablet) {
+      margin-top: 10vh;
+      padding-left: calc(6rem + 130px);
+      padding-right: calc(6rem + 10vw);
+    }
+
+    .total-text {
+      display: flex;
+      font-size: $font-size-larger;
+      font-weight: bold;
+    }
+
+    .total-amount {
+      display: flex;
+      font-size: $font-size-larger;
+      font-weight: bold;
+      justify-content: flex-end;
+    }
+  }
+}

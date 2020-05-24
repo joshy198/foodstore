@@ -1,0 +1,14 @@
+<div class="icon-button" *ngIf="provideBackAction" (click)="manageBackClick()">
+  <div class="icon {{stylingService.osStyle === osStyle.APPLE ? 'back-ios' : 'back'}}"></div>
+</div>
+  <cp-mobile-menu *ngIf="!provideBackAction&&type!=screenType.DESKTOP"></cp-mobile-menu>
+<cp-language *ngIf="type==screenType.DESKTOP||type==screenType.TABLET"></cp-language>
+<div class="naming {{stylingService.osStyle === osStyle.APPLE ? 'apple' : ''}}">
+  <div class="text">
+    {{headerText}}
+  </div>
+</div>
+<div class="icon-button {{dataService.currentCart.length===0?'no-text':''}}" (click)="navigateToCart()">
+  <div class="icon cart"></div>
+  {{calculateCartItems()}}
+</div>
