@@ -1,15 +1,15 @@
 [
     {
-        "id": "b52ace3f.1a691",
+        "id": "16a5e76d.f605e9",
         "type": "tab",
         "label": "SomeService",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "f0994127.97fb8",
+        "id": "6963e9a.9a94118",
         "type": "http in",
-        "z": "b52ace3f.1a691",
+        "z": "16a5e76d.f605e9",
         "name": "request category",
         "url": "/category",
         "method": "get",
@@ -19,14 +19,14 @@
         "y": 500,
         "wires": [
             [
-                "a71bc54a.57b838"
+                "2fc21902.8c1a76"
             ]
         ]
     },
     {
-        "id": "f763f965.a94538",
+        "id": "f009edc0.846e6",
         "type": "function",
-        "z": "b52ace3f.1a691",
+        "z": "16a5e76d.f605e9",
         "name": "getProductsAsJson",
         "func": "var updatedAfter = msg.payload['updatedAfter'];\nvar lang = msg.payload['lang'];\nvar products = flow.get('products');\nmsg.payload=JSON.stringify(products);\nreturn msg;",
         "outputs": 1,
@@ -35,15 +35,15 @@
         "y": 380,
         "wires": [
             [
-                "7a5d3afb.d4a5b4",
-                "c55690ba.4816b"
+                "fef53610.d64738",
+                "5d73f1c0.65179"
             ]
         ]
     },
     {
-        "id": "7a5d3afb.d4a5b4",
+        "id": "fef53610.d64738",
         "type": "http response",
-        "z": "b52ace3f.1a691",
+        "z": "16a5e76d.f605e9",
         "name": "",
         "statusCode": "200",
         "headers": {},
@@ -52,9 +52,9 @@
         "wires": []
     },
     {
-        "id": "ba20b06e.824a3",
+        "id": "221fc1a.b81f13e",
         "type": "inject",
-        "z": "b52ace3f.1a691",
+        "z": "16a5e76d.f605e9",
         "name": "performSetup",
         "topic": "",
         "payload": "",
@@ -67,16 +67,16 @@
         "y": 140,
         "wires": [
             [
-                "21abe9c4.8a5a96"
+                "2238edbe.b67ac2"
             ]
         ]
     },
     {
-        "id": "21abe9c4.8a5a96",
+        "id": "2238edbe.b67ac2",
         "type": "function",
-        "z": "b52ace3f.1a691",
+        "z": "16a5e76d.f605e9",
         "name": "setupQuery",
-        "func": "class Product {\n  constructor(id,title,descr,price,unit,imageUrl,categoryKey,updatedAt,quantity,properties) {\n    this.id=id;\n    this.title=title;\n    this.descr=descr;\n    this.price=price;\n    this.unit=unit;\n    this.imageUrl=imageUrl;\n    this.categoryKey=categoryKey;\n    this.updatedAt=updatedAt;\n    this.quantity=quantity;\n    this.properties=properties;\n  }\n}\nclass Category {\n  constructor(key,content,icon) {\n    this.key = key;\n    this.content=content;\n    this.icon=icon;\n  }\n}\nclass ProductProperty{\n    constructor(name,value){\n        this.value=value;\n        this.name=name;\n    }\n}\n\nvar ctr = 1;\nfunction count(){\n    ctr=ctr+1;\n    return ctr;\n}\nvar cats = [];\nvar prods = [];\n\ncats.push(new Category('meat','Meat Products','sausage'));\ncats.push(new Category('cheese','Cheese Products','cheeses'));\ncats.push(new Category('vegetables','Vegetables','vegetables'));\ncats.push(new Category('fruits','Fruits','fruits'));\ncats.push(new Category('drinks','Drinks & Co','water'));\ncats.push(new Category('alcohol','Alcoholic Beverages','alcohol'));\ncats.push(new Category('coffee','Coffee & Tea','coffee'));\ncats.push(new Category('essentials','Essentials','cooled'));\ncats.push(new Category('flour','Flour & Co','bakery'));\ncats.push(new Category('bakery','Bakery','bread'));\ncats.push(new Category('convenience','Cans & Convenience','covered'));\ncats.push(new Category('candies','Candies','candies'));\n\nprods.push(new Product('id'+count(),\n'Beef Steak',\n'Nice Steak. Made from local cows. Hand crafted.',\n49.99,\n'1kg',\n'https://bit.ly/2WVnj2E',\n'meat',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Animal of origin','Cow'),\nnew ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Pork Steak',\n'Nice Steak. Made from local cows. Hand crafted.',\n29.99,\n'1kg',\n'https://bit.ly/2ytutSm',\n'meat',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Animal of origin','Pig'),\nnew ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Chicken Breast',\n'Nice Breast. Made from local cows. Hand crafted.',\n14.99,\n'1kg',\n'https://bit.ly/2zjoYX0',\n'meat',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Animal of origin','Chicken'),\nnew ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Gouda',\n'Classic cheese. Made from local produce. Hand crafted.',\n19.99,\n'1kg',\n'https://bit.ly/3bSWyQM',\n'cheese',\nnew Date(2020,5,24),\n300,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Cheddar',\n'Classic cheese. Made from local produce. Hand crafted.',\n14.99,\n'1kg',\n'https://bit.ly/2WZEmkj',\n'cheese',\nnew Date(2020,5,24),\n300,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Emmentaler',\n'Classic cheese. Made from local produce. Hand crafted.',\n17.49,\n'1kg',\n'https://bit.ly/3d2MF4c',\n'cheese',\nnew Date(2020,5,24),\n300,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Potatoes',\n'Bio product. Low-starch type. Locally harvested and packaged by hand.',\n6.99,\n'1kg',\n'https://bit.ly/2WWJwNV',\n'vegetables',\nnew Date(2020,5,24),\n1000,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Carrots',\n'Bio product. Locally harvested and packaged by hand.',\n6.99,\n'1kg',\n'https://bit.ly/2TzSrCQ',\n'vegetables',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Cauliflower',\n'Bio product. Locally harvested and packaged by hand.',\n6.99,\n'1kg',\n'https://bit.ly/3bUqDiJ',\n'vegetables',\nnew Date(2020,5,24),\n300,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Apples',\n'Bio product. Locally harvested and packaged by hand.',\n5.99,\n'1kg',\n'https://bit.ly/3c3wvpT',\n'fruits',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Pears',\n'Bio product. Locally harvested and packaged by hand.',\n5.99,\n'1kg',\n'https://bit.ly/3c1a6JQ',\n'fruits',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Cherries',\n'Bio product. Locally harvested and packaged by hand.',\n5.99,\n'1kg',\n'https://bit.ly/2LVPVm5',\n'fruits',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Apple Juice',\n'Bio product. Filled in reusable glass bottles.',\n3.99,\n'1l',\n'https://bit.ly/3cZ5wgN',\n'drinks',\nnew Date(2020,5,24),\n1000,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Turnip Juice',\n'Bio product. Filled in reusable glass bottles.',\n3.99,\n'1l',\n'https://bit.ly/2ZxkTsP',\n'drinks',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Natural Water',\n'Filled in reusable glass bottles.',\n1.99,\n'1l',\n'https://bit.ly/3bYmsCJ',\n'drinks',\nnew Date(2020,5,24),\n1000,\n[new ProductProperty('Country of origin','Austria')]));\n\nflow.set('categories',cats);\nflow.set('products',prods);\n\nprods.push(new Product('id'+count(),\n'Cider',\n'Bio product. Filled in reusable glass bottles.',\n5.99,\n'1l',\n'https://bit.ly/2zudtfl',\n'alcohol',\nnew Date(2020,5,24),\n1000,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Red Wine',\n'Zweigelt. Bio product. Filled in reusable glass bottles.',\n9.99,\n'1l',\n'https://bit.ly/2TCABPH',\n'alcohol',\nnew Date(2020,5,24),\n1000,\n[new ProductProperty('Country of origin','Austria')]));\n\nflow.set('categories',cats);\nflow.set('products',prods);\n\nprods.push(new Product('id'+count(),\n'White Wine',\n'Grüner Veltliner. Bio product. Filled in reusable glass bottles.',\n9.99,\n'1l',\n'https://bit.ly/3d1KAFL',\n'alcohol',\nnew Date(2020,5,24),\n1000,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Coffee Beans',\n'Bio product. Roasted and handpicked.',\n24.99,\n'1kg',\n'https://bit.ly/3d2oH9l',\n'coffee',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Fruit Tea',\n'Bio product. Packaged in paper by hand.',\n24.99,\n'1kg',\n'https://bit.ly/2M17EbH',\n'coffee',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Cow Milk',\n'3.5% fat. Bio product. Filled in reusable glass bottles.',\n2.99,\n'1l',\n'https://bit.ly/36tvmqH',\n'essentials',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Eggs',\n'Chicken eggs. Bio product. Hand picked.',\n7.99,\n'1kg',\n'https://bit.ly/3gfqObU',\n'essentials',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Wheat Flour',\n'Bio product. Packaged in paper by hand.',\n5.99,\n'1kg',\n'https://bit.ly/2WYxDab',\n'flour',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Bread Rolls',\n'Kaisersemmel type. Bio product.',\n4.99,\n'1kg',\n'https://bit.ly/2LULjN1',\n'bakery',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Pretzels',\n'Classic style. Bio product.',\n4.99,\n'1kg',\n'https://bit.ly/3c1njSY',\n'bakery',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Croissants',\n'Classic style. Bio product.',\n4.99,\n'1kg',\n'https://bit.ly/2ZuSGmt',\n'bakery',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Canned Peaches',\n'Bio product. Sealed in glass jar by hand.',\n6.99,\n'1kg',\n'https://bit.ly/3ecgFLl',\n'convenience',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Canned Pickles',\n'Bio product. Sealed in glass jar by hand.',\n6.99,\n'1kg',\n'https://bit.ly/3eeMMtH',\n'convenience',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Bonbons',\n'Strawberry flavour. Hand crafted.',\n9.99,\n'1kg',\n'https://bit.ly/2AYff8V',\n'candies',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nflow.set('categories',cats);\nflow.set('products',prods);\n\nreturn msg;",
+        "func": "class Product {\n  constructor(id,title,descr,price,unit,imageUrl,categoryKey,updatedAt,quantity,properties) {\n    this.id=id;\n    this.title=title;\n    this.descr=descr;\n    this.price=price;\n    this.unit=unit;\n    this.imageUrl=imageUrl;\n    this.categoryKey=categoryKey;\n    this.updatedAt=updatedAt;\n    this.quantity=quantity;\n    this.properties=properties;\n  }\n}\nclass Category {\n  constructor(key,content,icon) {\n    this.key = key;\n    this.content=content;\n    this.icon=icon;\n  }\n}\nclass ProductProperty{\n    constructor(name,value){\n        this.value=value;\n        this.name=name;\n    }\n}\n\nvar ctr = 1;\nfunction count(){\n    ctr=ctr+1;\n    return ctr;\n}\nvar cats = [];\nvar prods = [];\n\ncats.push(new Category('meat','Meat Products','sausage'));\ncats.push(new Category('cheese','Cheese Products','cheeses'));\ncats.push(new Category('vegetables','Vegetables','vegetables'));\ncats.push(new Category('fruits','Fruits','fruits'));\ncats.push(new Category('drinks','Drinks & Co','water'));\ncats.push(new Category('alcohol','Alcoholic Beverages','alcohol'));\ncats.push(new Category('coffee','Coffee & Tea','coffee'));\ncats.push(new Category('essentials','Essentials','cooled'));\ncats.push(new Category('flour','Flour & Co','bakery'));\ncats.push(new Category('bakery','Bakery','bread'));\ncats.push(new Category('convenience','Cans & Convenience','covered'));\ncats.push(new Category('candies','Candies','candies'));\n\nprods.push(new Product('id'+count(),\n'Beef Steak',\n'Nice Steak. Made from local cows. Hand crafted.',\n49.99,\n'1kg',\n'https://bit.ly/2WVnj2E',\n'meat',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Animal of origin','Cow'),\nnew ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Pork Steak',\n'Nice Steak. Made from local pigs. Hand crafted.',\n29.99,\n'1kg',\n'https://bit.ly/2ytutSm',\n'meat',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Animal of origin','Pig'),\nnew ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Chicken Breast',\n'Nice Breast. Made from local chickens. Hand crafted.',\n14.99,\n'1kg',\n'https://bit.ly/2zjoYX0',\n'meat',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Animal of origin','Chicken'),\nnew ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Gouda',\n'Classic cheese. Made from local produce. Hand crafted.',\n19.99,\n'1kg',\n'https://bit.ly/3bSWyQM',\n'cheese',\nnew Date(2020,5,24),\n300,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Cheddar',\n'Classic cheese. Made from local produce. Hand crafted.',\n14.99,\n'1kg',\n'https://bit.ly/2WZEmkj',\n'cheese',\nnew Date(2020,5,24),\n300,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Emmentaler',\n'Classic cheese. Made from local produce. Hand crafted.',\n17.49,\n'1kg',\n'https://bit.ly/3d2MF4c',\n'cheese',\nnew Date(2020,5,24),\n300,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Potatoes',\n'Bio product. Low-starch type. Locally harvested and packaged by hand.',\n6.99,\n'1kg',\n'https://bit.ly/2WWJwNV',\n'vegetables',\nnew Date(2020,5,24),\n1000,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Carrots',\n'Bio product. Locally harvested and packaged by hand.',\n6.99,\n'1kg',\n'https://bit.ly/2TzSrCQ',\n'vegetables',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Cauliflower',\n'Bio product. Locally harvested and packaged by hand.',\n6.99,\n'1kg',\n'https://bit.ly/3bUqDiJ',\n'vegetables',\nnew Date(2020,5,24),\n300,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Apples',\n'Bio product. Locally harvested and packaged by hand.',\n5.99,\n'1kg',\n'https://bit.ly/3c3wvpT',\n'fruits',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Pears',\n'Bio product. Locally harvested and packaged by hand.',\n5.99,\n'1kg',\n'https://bit.ly/3c1a6JQ',\n'fruits',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Cherries',\n'Bio product. Locally harvested and packaged by hand.',\n5.99,\n'1kg',\n'https://bit.ly/2LVPVm5',\n'fruits',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Apple Juice',\n'Bio product. Filled in reusable glass bottles.',\n3.99,\n'1l',\n'https://bit.ly/3cZ5wgN',\n'drinks',\nnew Date(2020,5,24),\n1000,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Turnip Juice',\n'Bio product. Filled in reusable glass bottles.',\n3.99,\n'1l',\n'https://bit.ly/2ZxkTsP',\n'drinks',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Natural Water',\n'Filled in reusable glass bottles.',\n1.99,\n'1l',\n'https://bit.ly/3bYmsCJ',\n'drinks',\nnew Date(2020,5,24),\n1000,\n[new ProductProperty('Country of origin','Austria')]));\n\nflow.set('categories',cats);\nflow.set('products',prods);\n\nprods.push(new Product('id'+count(),\n'Cider',\n'Bio product. Filled in reusable glass bottles.',\n5.99,\n'1l',\n'https://bit.ly/2zudtfl',\n'alcohol',\nnew Date(2020,5,24),\n1000,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Red Wine',\n'Zweigelt. Bio product. Filled in reusable glass bottles.',\n9.99,\n'1l',\n'https://bit.ly/2TCABPH',\n'alcohol',\nnew Date(2020,5,24),\n1000,\n[new ProductProperty('Country of origin','Austria')]));\n\nflow.set('categories',cats);\nflow.set('products',prods);\n\nprods.push(new Product('id'+count(),\n'White Wine',\n'Grüner Veltliner. Bio product. Filled in reusable glass bottles.',\n9.99,\n'1l',\n'https://bit.ly/3d1KAFL',\n'alcohol',\nnew Date(2020,5,24),\n1000,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Coffee Beans',\n'Bio product. Roasted and handpicked.',\n24.99,\n'1kg',\n'https://bit.ly/3d2oH9l',\n'coffee',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Fruit Tea',\n'Bio product. Packaged in paper by hand.',\n24.99,\n'1kg',\n'https://bit.ly/2M17EbH',\n'coffee',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Cow Milk',\n'3.5% fat. Bio product. Filled in reusable glass bottles.',\n2.99,\n'1l',\n'https://bit.ly/36tvmqH',\n'essentials',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Eggs',\n'Chicken eggs. Bio product. Hand picked.',\n7.99,\n'1kg',\n'https://bit.ly/3gfqObU',\n'essentials',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Wheat Flour',\n'Bio product. Packaged in paper by hand.',\n5.99,\n'1kg',\n'https://bit.ly/2WYxDab',\n'flour',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Bread Rolls',\n'Kaisersemmel type. Bio product.',\n4.99,\n'1kg',\n'https://bit.ly/2LULjN1',\n'bakery',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Pretzels',\n'Classic style. Bio product.',\n4.99,\n'1kg',\n'https://bit.ly/3c1njSY',\n'bakery',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Croissants',\n'Classic style. Bio product.',\n4.99,\n'1kg',\n'https://bit.ly/2ZuSGmt',\n'bakery',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Canned Peaches',\n'Bio product. Sealed in glass jar by hand.',\n6.99,\n'1kg',\n'https://bit.ly/3ecgFLl',\n'convenience',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Canned Pickles',\n'Bio product. Sealed in glass jar by hand.',\n6.99,\n'1kg',\n'https://bit.ly/3eeMMtH',\n'convenience',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nprods.push(new Product('id'+count(),\n'Bonbons',\n'Strawberry flavour. Hand crafted.',\n9.99,\n'1kg',\n'https://bit.ly/2AYff8V',\n'candies',\nnew Date(2020,5,24),\n500,\n[new ProductProperty('Country of origin','Austria')]));\n\nflow.set('categories',cats);\nflow.set('products',prods);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 510,
@@ -86,9 +86,9 @@
         ]
     },
     {
-        "id": "224f4774.6656d8",
+        "id": "8d274d5a.ef72a",
         "type": "http in",
-        "z": "b52ace3f.1a691",
+        "z": "16a5e76d.f605e9",
         "name": "request product",
         "url": "/products",
         "method": "get",
@@ -98,14 +98,14 @@
         "y": 380,
         "wires": [
             [
-                "f763f965.a94538"
+                "f009edc0.846e6"
             ]
         ]
     },
     {
-        "id": "a71bc54a.57b838",
+        "id": "2fc21902.8c1a76",
         "type": "function",
-        "z": "b52ace3f.1a691",
+        "z": "16a5e76d.f605e9",
         "name": "getCategoriesAsJson",
         "func": "var updatedAfter = msg.payload['updatedAfter'];\nvar lang = msg.payload['lang'];\nvar categories = flow.get('categories');\nmsg.payload=JSON.stringify(categories);\nreturn msg;",
         "outputs": 1,
@@ -114,15 +114,15 @@
         "y": 500,
         "wires": [
             [
-                "3f4baf74.ff93e",
-                "c55690ba.4816b"
+                "ad50ec1f.be818",
+                "5d73f1c0.65179"
             ]
         ]
     },
     {
-        "id": "3f4baf74.ff93e",
+        "id": "ad50ec1f.be818",
         "type": "http response",
-        "z": "b52ace3f.1a691",
+        "z": "16a5e76d.f605e9",
         "name": "",
         "statusCode": "200",
         "headers": {},
@@ -131,9 +131,9 @@
         "wires": []
     },
     {
-        "id": "c55690ba.4816b",
+        "id": "5d73f1c0.65179",
         "type": "debug",
-        "z": "b52ace3f.1a691",
+        "z": "16a5e76d.f605e9",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -145,9 +145,9 @@
         "wires": []
     },
     {
-        "id": "742b5fb.b8ab5a",
+        "id": "8f731eff.11839",
         "type": "inject",
-        "z": "b52ace3f.1a691",
+        "z": "16a5e76d.f605e9",
         "name": "",
         "topic": "",
         "payload": "",
@@ -160,14 +160,14 @@
         "y": 300,
         "wires": [
             [
-                "f763f965.a94538"
+                "f009edc0.846e6"
             ]
         ]
     },
     {
-        "id": "5a4c190.5b66be8",
+        "id": "1ed8839a.91336c",
         "type": "inject",
-        "z": "b52ace3f.1a691",
+        "z": "16a5e76d.f605e9",
         "name": "",
         "topic": "",
         "payload": "",
@@ -180,7 +180,7 @@
         "y": 420,
         "wires": [
             [
-                "a71bc54a.57b838"
+                "2fc21902.8c1a76"
             ]
         ]
     }
