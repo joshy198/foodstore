@@ -4,6 +4,7 @@ import {Injectable} from '@angular/core';
 import {CartItem} from '../model/cart';
 import {ProductProperty} from '../model/product-property';
 import {LocalStorageService} from "./localstorage.service";
+import {RemoteApiService} from "./remote-api.service";
 
 @Injectable()
 export class CoreDataService {
@@ -16,9 +17,16 @@ export class CoreDataService {
 
   // private performedPurchases: Product[];
 
-  public constructor(private persistencyService: LocalStorageService) {
+  public constructor(private persistencyService: LocalStorageService, private remoteService: RemoteApiService) {
     this.activeCart = this.persistencyService.cart;
-     this.fillWithDummyData();
+    remoteService.requestCategories().subscribe(res => {
+      this.availableCategories = res;
+      remoteService.requestProducts().subscribe(rb => {
+        this.availableProducts = rb;
+        console.log(this.availableProducts);
+      });
+    });
+     //this.fillWithDummyData();
   }
 
   public getCategoriesFor(c: Category): Category[] {

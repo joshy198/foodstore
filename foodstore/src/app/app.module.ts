@@ -10,6 +10,7 @@ import {CoreDataService} from "./commons/services/core-data.service";
 import {LocalStorageService} from "./commons/services/localstorage.service";
 import {NavigationService} from "./commons/services/navigation.service";
 import {MainviewModule} from "./components/cp-mainview/cp-mainview.module";
+import {RemoteApiService} from "./commons/services/remote-api.service";
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {MainviewModule} from "./components/cp-mainview/cp-mainview.module";
   providers: [
     NavigationService,
     CoreDataService,
+    RemoteApiService,
     LocalStorageService],
   bootstrap: [AppComponent]
 })
