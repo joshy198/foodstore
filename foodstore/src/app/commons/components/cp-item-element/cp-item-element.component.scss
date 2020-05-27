@@ -1,0 +1,253 @@
+@import "../../../../styles";
+
+cp-item-element {
+  display: flex;
+  cursor: pointer;
+  margin: 10px 10px 0px;
+  padding-bottom: 5px;
+
+  .desktop-header {
+    display: flex;
+    height: 2.5rem;
+    border-bottom: 2px solid $color-primary;
+    margin-bottom: 0.2rem;
+
+    .naming {
+      margin-left: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: $color-primary;
+      font-size: $font-size-medium;
+      font-weight: bold;
+    }
+
+    .favourite {
+
+    }
+  }
+
+  .container {
+    display: flex;
+    flex: 1;
+
+    .img-box {
+      display: flex;
+      width: 60px;
+      height: 60px;
+      margin-right: 10px;
+
+      img {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /*magic*/
+      }
+    }
+
+    .mobile-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+      min-width: 35%;
+
+      .text {
+        display: flex;
+        flex: 1;
+      }
+
+      .name {
+        font-size: $font-size-medium;
+      }
+
+      .availability {
+        display: flex;
+
+      }
+    }
+
+    .mobile-price {
+      padding-top: 10px;
+      padding-right: 5%;
+      display: flex;
+      font-size: $font-size-medium;
+      flex: 1;
+      justify-content: flex-end;
+      text-align: right;
+    }
+
+
+  }
+
+  .cart-box {
+    .desktop-price {
+    }
+
+    .desktop-add-to-cart {
+
+    }
+  }
+
+  .mobile-add-to-cart {
+    background-image: url(../../../../assets/add-cart.svg);
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+
+    &.added {
+      background-image: url(../../../../assets/add-cart-green.svg);
+    }
+
+    &.disabled {
+      cursor: default;
+      background-image: url(../../../../assets/add-cart-disabled.svg);
+    }
+  }
+
+  .mobile-add-to-cart :active {
+    transition: 0.1s ease-in;
+    transform: scale(0.8);
+  }
+
+  .desktop-add-to-cart {
+    display: none;
+  }
+
+  @media screen and (max-width: $screen-mobile) {
+    border-bottom: 1px solid $color-primary;
+    .desktop-header {
+      display: none;
+    }
+    .desktop-price {
+      display: none;
+    }
+    .cart-box {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: $screen-mobile) and (max-width: $screen-tablet) {
+    border-bottom: 1px solid $color-primary;
+    .desktop-header {
+      display: none;
+    }
+    .container {
+
+      .mobile-box {
+
+        .text {
+          font-size: $font-size-medium;
+        }
+      }
+
+      .img-box {
+        width: 90px;
+        height: 90px;
+      }
+
+      .mobile-price {
+        font-size: $font-size-large;
+
+      }
+    }
+    .cart-box {
+      display: none;
+    }
+  }
+  @media screen and (min-width: $screen-tablet) {
+    width: 15rem;
+    height: 15rem;
+    padding-bottom: 0px;
+    border: 2px solid $color-primary;
+    flex-direction: column;
+    .container {
+      flex: 1;
+      justify-content: center;
+
+      .img-box {
+        width: 8rem;
+        height: 8rem;
+      }
+
+      .mobile-price {
+        display: none;
+      }
+
+      .mobile-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+
+        .text {
+          display: none
+        }
+      }
+    }
+    .mobile-add-to-cart {
+      display: none;
+    }
+    .cart-box {
+      display: flex;
+      height: 3.5rem;
+      background-color: $color-primary;
+      justify-content: space-between;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-top: 2px;
+      margin-left: -2px;
+      margin-bottom: -2px;
+      width: calc(13rem + 4px);
+
+      &.added {
+        background-color: $color-positive;
+      }
+
+      &.disabled {
+        background-color: $color-disabled;
+        cursor: default;
+      }
+
+      .desktop-price {
+        color: $color-font-light;
+        font-size: $font-size-large;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .desktop-add-to-cart {
+        margin-top: 0.3rem;
+        display: flex;
+        background-image: url(../../../../assets/add-cart-bright.svg);
+        background-size: cover;
+        width: 3rem;
+        height: 3rem;
+      }
+
+    }
+    .cart-box:active {
+      .desktop-add-to-cart {
+        transform: scale(0.8);
+      }
+    }
+
+    .cart-box:active:hover {
+      transition: background-color 0.1s ease-out;
+      background-color: $color-positive;
+    }
+
+    .cart-box:hover {
+      background-color: $color-primary-light;
+
+      &.added {
+        background-color: $color-positive;
+      }
+
+      &.disabled {
+        background-color: $color-disabled;
+      }
+    }
+
+  }
+}

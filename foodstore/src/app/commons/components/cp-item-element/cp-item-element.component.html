@@ -1,0 +1,27 @@
+<div class="desktop-header">
+  <div class="naming">
+    {{product.title}}
+  </div>
+  <div class="favourite"></div>
+</div>
+<div class="container">
+  <div class="img-box">
+    <img src="{{product.imageUrl}}">
+  </div>
+  <div class="mobile-box">
+    <div class="text">{{product.title}}</div>
+    <div class="availability">
+    </div>
+  </div>
+  <div class="mobile-price">{{product.price.toLocaleString(languageService.currentLanguage,
+    {minimumFractionDigits: 2}) + ' €/' + product.unit}}</div>
+</div>
+<div class="mobile-add-to-cart {{available?isAdded?'added':'':'disabled'}}"
+     (click)="$event.stopPropagation();performAddToCart()"></div>
+<div class="cart-box {{available?isAdded?'added':'':'disabled'}}"
+     (click)="$event.stopPropagation();performAddToCart()">
+  <div class="desktop-price">{{product.price.toLocaleString(languageService.currentLanguage,
+    {minimumFractionDigits: 2}) + ' €/' + product.unit}}
+  </div>
+  <div class="desktop-add-to-cart"></div>
+</div>

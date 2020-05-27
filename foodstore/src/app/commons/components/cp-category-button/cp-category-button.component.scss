@@ -1,0 +1,194 @@
+@import "../../../../styles";
+
+$button-height: 8rem;
+$button-width: $button-height;
+$button-width-small: calc(#{$button-height} / 1.7);
+
+
+cp-category-button {
+ // border-radius: 50%;
+  padding: 0.5rem 0.5rem;
+  height: $button-height;
+  width: $button-width;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .favourite {
+    display: none;
+  }
+
+  .icon {
+    display: flex;
+    padding-top: 1rem;
+    width: calc(#{$button-height} * 0.6);
+    height: calc(#{$button-height} * 0.6);
+  }
+
+  .name {
+    margin-top: 0.5rem;
+    font-size: $font-size-medium;
+    padding-bottom: 0.2rem;
+
+  }
+
+  &.small {
+    padding: 0.1rem;
+    height: calc(#{$button-height} * 0.9);
+    width: $button-width-small;
+    border-radius: unset;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: unset;
+    border: none;
+
+    .icon {
+
+      margin: calc(-1rem + 2px) 6px 2px 2px;
+      padding: unset;
+      display: flex;
+      border-radius: 50%;
+      border: 1px solid $color-primary;
+      width: calc(#{$button-width-small} * 0.6);
+      height: calc(#{$button-width-small} * 0.6);
+      flex: unset;
+    }
+
+    .favourite {
+      display: flex;
+      justify-content: flex-end;
+
+      .full-star-active {
+        width: 2.5rem;
+        height: 2.5rem;
+        transition: background-image 2s ease-in-out;
+        background-image: url(../../../../assets/active-star.svg);
+        background-size: cover;
+      }
+
+      .full-star-active:hover {
+        background-image: url(../../../../assets/inactive-star.svg);
+        background-size: cover;
+      }
+
+      .half-star {
+        width: 2.5rem;
+        height: 2.5rem;
+        transition: background-image 2s ease-in-out;
+        background-image: url(../../../../assets/active-star-half.svg);
+        background-size: cover;
+      }
+
+      .half-star:hover {
+        background-image: url(../../../../assets/active-star.svg);
+        background-size: cover;
+      }
+
+      .half-star-full {
+        width: 2.5rem;
+        height: 2.5rem;
+        transition: background-image 2s ease-in-out;
+        background-image: url(../../../../assets/active-star.svg);
+        background-size: cover;
+      }
+
+      .half-star-full:hover {
+        background-image: url(../../../../assets/active-star-half.svg);
+        background-size: cover;
+      }
+
+      .full-star-inactive {
+        width: 2.5rem;
+        height: 2.5rem;
+        transition: background-image 2s ease-in-out;
+        background-image: url(../../../../assets/inactive-star.svg);
+        background-size: cover;
+      }
+
+      .full-star-inactive:hover {
+        background-image: url(../../../../assets/active-star.svg);
+        background-size: cover;
+      }
+
+    }
+
+    .name {
+      font-size: $font-size-normal;
+      text-align: center;
+      padding: 0px 2rem 0px 0px;
+      margin: 0px;
+    }
+
+    &.selected {
+      background-color: unset;
+      border: none;
+
+      .icon {
+        margin: -1rem 0px 0px 0px;
+        width: calc(#{$button-width-small} * 0.6 - 4px);
+        height: calc(#{$button-width-small} * 0.6 - 4px);
+        border: 5px solid $color-primary;
+      }
+    }
+  }
+
+  &.selected {
+    background-color: $color-primary-opc10;
+    // border: 3px solid $color-primary;
+  }
+}
+
+.box:hover {
+  background: $color-primary-opc02;
+}
+
+//SMARTPHONES
+@media screen and (max-width: $screen-mobile) {
+  $button-height: 25vw;
+  $button-width: $button-height;
+  //$button-width: 80vw;
+  cp-category-button {
+    height: $button-height;
+    width: $button-width;
+
+    .favourite {
+      display: none;
+    }
+
+    .icon {
+      display: flex;
+      flex: 1;
+    }
+
+    .name {
+      font-size: $font-size-medium-small;
+      margin-top: 0.5vw;
+      padding-bottom: 0.2vw;
+    }
+
+
+  }
+}
+
+//TABLETS
+@media screen and (min-width: $screen-mobile) and (max-width: $screen-tablet) {
+  $button-height: 15vw;
+  $button-width: $button-height;
+  cp-category-button {
+    padding: 1rem;
+    height: $button-height;
+    width: $button-width;
+
+    .favourite {
+      display: none;
+    }
+
+    .name {
+      margin-top: 1vw;
+      font-size: $font-size-large;
+      padding-bottom: 1vw;
+    }
+  }
+}

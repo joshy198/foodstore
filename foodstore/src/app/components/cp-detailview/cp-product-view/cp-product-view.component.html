@@ -1,0 +1,19 @@
+
+<div class="image-view"><img src="{{product.imageUrl}}"></div>
+<div class="properties">
+  <div class="product-info">
+    <div class="description">{{product.description}}</div>
+    <br>
+    <div class="price">{{product.price + "€/" + product.unit}}</div>
+    <br>
+    <div class="value-box" *ngFor="let p of product.properties">
+      <div class="name">{{p.key}}</div>
+      <div class="value">{{p.value}}</div>
+      <br>
+    </div>
+    <div class="stock">{{"Available: " + product.quantity}}</div>
+  </div>
+  <br>
+</div>
+<div class="location"></div>
+

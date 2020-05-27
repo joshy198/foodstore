@@ -1,0 +1,62 @@
+@import "../../../../styles";
+
+cp-product-view {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  .image-view {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    max-height: 40vh;
+
+    img {
+      display: flex;
+      object-fit: contain; /*magic*/
+    }
+  }
+
+  .properties {
+    //margin-left: 20%;
+    //margin-right: 20%;
+    .value-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 1fr);
+      .name{}
+      .value{}
+    }
+  }
+
+  .name {
+    font-size: $font-size-medium-small;
+  }
+
+  .value {
+    font-size: $font-size-medium-small;
+  }
+
+  .location {
+    display: flex;
+  }
+
+  .description {
+    //margin-left: 0rem;
+    //margin-right: 0rem;
+    font-size: $font-size-large;
+  }
+
+  .product-info {
+    text-align: center;
+    vertical-align: center;
+  }
+
+  .price {
+    font-size: $font-size-large;
+  }
+
+  .stock {
+    font-size: $font-size-medium;
+  }
+}

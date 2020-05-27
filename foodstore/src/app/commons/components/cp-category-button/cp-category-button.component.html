@@ -1,0 +1,12 @@
+ <div class="favourite" [ngSwitch]="favourite">
+    <div class="full-star-inactive" *ngSwitchCase="favouriteStyle.NONE"
+         (click)="favouriteClicked.emit();$event.stopPropagation();"></div>
+    <div class="half-star" *ngSwitchCase="favouriteStyle.PARTIAL"
+         (click)="favouriteClicked.emit();$event.stopPropagation();"></div>
+    <div class="half-star-full" *ngSwitchCase="favouriteStyle.PARTIAL_FULL"
+         (click)="favouriteClicked.emit();$event.stopPropagation();"></div>
+    <div class="full-star-active" *ngSwitchCase="favouriteStyle.FULL"
+         (click)="favouriteClicked.emit();$event.stopPropagation();"></div>
+  </div>
+ <div class="icon"  [ngStyle]="{background: 'url(../../../../assets/cat/' + c.icon  + '.svg) no-repeat center'}"></div>
+  <div class="name">{{c.content}}</div>

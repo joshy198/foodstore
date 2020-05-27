@@ -1,4 +1,24 @@
 <cp-header [headerText]="translation.overview"></cp-header>
-
+<div class="aligner">
+  <div class="regions">
+    <cp-category-button class="{{region.key==this.selectedRegion.key?'selected':''}}"
+                        *ngFor="let region of this.regions" [c]="region"
+                        [productAmount]="getNumberOfProducts(region)"
+                        [favourite]="getFavouriteStyle(region)"
+                        (click)="selectRegion(region)"></cp-category-button>
+  </div>
+  <div class="categories" *ngIf="showCategories">
+    <cp-category-button class="{{isCategorySelected(category)?'small selected':'small'}}"
+                        *ngFor="let category of dataService.getCategoriesFor(selectedRegion)" [c]="category"
+                        [productAmount]="getNumberOfProducts(category)"
+                        [favourite]="getFavouriteStyle(category)"
+                        (favouriteClicked)="updateFavourite(category)"
+                        (click)="selectCategory(category)"></cp-category-button>
+    <div class="nothing-to-show no-center" *ngIf="dataService.getCategoriesFor(selectedRegion).length===0">{{translation.noCategory}}</div>
+  </div>
+  <cp-product-overview [products]="requestedProducts"
+                       (selectedProduct)="navigateToProduct($event)"></cp-product-overview>
+  <div class="nothing-to-show" *ngIf="requestedProducts.length===0">{{translation.nothingToShow}}</div>
+</div>
 <div class="bottom">
 </div>

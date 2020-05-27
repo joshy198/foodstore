@@ -1,10 +1,10 @@
+import {LocalStorageService} from './localstorage.service';
+import {RemoteApiService} from './remote-api.service';
 import {Product} from '../model/product';
 import {Category} from '../model/category';
 import {Injectable} from '@angular/core';
 import {CartItem} from '../model/cart';
 import {ProductProperty} from '../model/product-property';
-import {LocalStorageService} from "./localstorage.service";
-import {RemoteApiService} from "./remote-api.service";
 
 @Injectable()
 export class CoreDataService {
@@ -17,8 +17,10 @@ export class CoreDataService {
 
   // private performedPurchases: Product[];
 
-  public constructor(private persistencyService: LocalStorageService, private remoteService: RemoteApiService) {
+  public constructor(private persistencyService: LocalStorageService,
+                     private remoteService: RemoteApiService) {
     this.activeCart = this.persistencyService.cart;
+    // this.fillWithDummyData();
     remoteService.requestCategories().subscribe(res => {
       this.availableCategories = res;
       remoteService.requestProducts().subscribe(rb => {
@@ -26,7 +28,9 @@ export class CoreDataService {
         console.log(this.availableProducts);
       });
     });
-     //this.fillWithDummyData();
+    /*this.remoteService.requestPurchases().subscribe(res => {
+      this.performedPurchases = res;
+    });*/
   }
 
   public getCategoriesFor(c: Category): Category[] {
@@ -111,7 +115,6 @@ export class CoreDataService {
     this.persistencyService.updateFavouriteCategories(c);
   }
 
-  // creating dataset to work with (fake server)
   private fillWithDummyData(): void {
     this.availableCategories = [];
     this.availableCategories.push(new Category('vegetables', 'Vegetables', 'vegetables'));

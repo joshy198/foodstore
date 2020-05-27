@@ -1,0 +1,11 @@
+@import "../../../styles";
+cp-detailview{
+  display: flex;
+  flex-direction: column;
+  flex:1;
+  .padder{
+    display: flex;
+    flex-direction: column;
+    border-top: $header-space solid $color-primary;
+  }
+}

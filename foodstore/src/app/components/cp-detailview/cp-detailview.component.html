@@ -1,0 +1,6 @@
+<cp-header [provideBackAction]="true" [headerText]="headerText"
+           (fallbackReturnClick)="fallbackBackAction()"></cp-header>
+
+<div class="padder">
+  <cp-product-view *ngIf="product" [productId]="product"></cp-product-view>
+</div>

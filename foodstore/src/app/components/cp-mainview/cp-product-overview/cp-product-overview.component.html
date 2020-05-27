@@ -1,0 +1,7 @@
+<div class="aligner">
+  <div class="layout-container">
+    <cp-item-element *ngFor="let product of products" [product]="product" [available]="isAvailable(product)"
+                     (click)="selectedProduct.emit(product)"
+                     (addToCart)="dataService.addToCart($event)"></cp-item-element>
+  </div>
+</div>
