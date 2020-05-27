@@ -10,9 +10,8 @@ cp-item-element {
     display: flex;
     height: 2.5rem;
     background-color: $color-primary-opc10;
-    border-left: 2px solid $color-primary;
-    border-top: 2px solid $color-primary;
-    border-right: 2px solid $color-primary;
+    border: 2px solid $color-primary;
+    border-bottom: 0px;
     // border-bottom: 2px solid $color-primary;
      padding-bottom: 0.2rem;
 
@@ -126,6 +125,9 @@ cp-item-element {
     .desktop-header {
       display: none;
     }
+    .container{
+      border: unset;
+    }
     .desktop-price {
       display: none;
     }
@@ -140,7 +142,7 @@ cp-item-element {
       display: none;
     }
     .container {
-
+      border: unset;
       .mobile-box {
 
         .text {

@@ -22,6 +22,7 @@ export class MainviewComponent implements OnInit,OnDestroy {
   public requestedProducts: Product[] = [];
   public selectedRegion: Category;
   public showCategories = true;
+  public timer:number;
   public regions: Category[] = [new Category('myShop', this.translation.mystore, 'store'),
     new Category('allShop', this.translation.fullstore, 'market')];
 
@@ -32,6 +33,7 @@ export class MainviewComponent implements OnInit,OnDestroy {
   }
 
   ngOnDestroy(): void {
+    clearInterval(this.timer);
   }
 
   ngOnInit(): void {
@@ -45,6 +47,11 @@ export class MainviewComponent implements OnInit,OnDestroy {
     }
     this.selectedCategories = this.dataService.selectedCategories;
     this.requestProducts();
+
+    this.timer=setInterval(()=>{
+      this.requestProducts();
+      console.log('Requesting...');
+    },1000);
     // this.favProducts.push(this.dataService.availableProducts[0]);
   }
 
