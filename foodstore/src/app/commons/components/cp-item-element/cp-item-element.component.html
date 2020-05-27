@@ -2,16 +2,25 @@
   <div class="naming">
     {{product.title}}
   </div>
-  <div class="favourite"></div>
+  <div class="favourite">
+    <div class="full-star-inactive" *ngIf="!isFavourite"
+         (click)="toggleFavourite.emit(product);$event.stopPropagation();"></div>
+    <div class="full-star-active"*ngIf="isFavourite"
+         (click)="toggleFavourite.emit(product);$event.stopPropagation();"></div>
+  </div>
 </div>
 <div class="container">
   <div class="img-box">
     <img src="{{product.imageUrl}}">
   </div>
   <div class="mobile-box">
-    <div class="text">{{product.title}}</div>
-    <div class="availability">
+    <div class="favourite">
+      <div class="full-star-inactive" *ngIf="!isFavourite"
+           (click)="toggleFavourite.emit(product);$event.stopPropagation();"></div>
+      <div class="full-star-active"*ngIf="isFavourite"
+           (click)="toggleFavourite.emit(product);$event.stopPropagation();"></div>
     </div>
+    <div class="text">{{product.title}}</div>
   </div>
   <div class="mobile-price">{{product.price.toLocaleString(languageService.currentLanguage,
     {minimumFractionDigits: 2}) + ' €/' + product.unit}}</div>

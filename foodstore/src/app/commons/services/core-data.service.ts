@@ -35,15 +35,15 @@ export class CoreDataService {
 
   public getCategoriesFor(c: Category): Category[] {
     if (c.key === 'myShop') {
-      const cat = this.favouriteCategories;
+      const cat = this.favouriteCategories.slice(0);
       for (const p of this.favouriteProducts) {
         if (cat.filter(ca => ca.key === p.category.key).length === 0) {
           cat.push(p.category);
         }
       }
-      return cat;
+      return this.orderCategories(cat);
     } else if (c.key === 'allShop') {
-      return this.availableCategories;
+      return this.orderCategories(this.availableCategories);
     }
     return [];
   }
@@ -55,15 +55,36 @@ export class CoreDataService {
       if (categories.length !== 0) {
         return fps.filter(p => categories.filter(c => c.key === p.category.key).length > 0);
       }
-      return fps;
+
+      return this.orderProducts(fps);
     } else if (area.key === 'allShop') {
       if (categories.length === 0) {
-        return this.availableProducts;
+        return this.orderProducts(this.availableProducts);
       } else {
-        return this.availableProducts.filter(p => categories.filter(c => c.key === p.category.key).length > 0);
+        return this.orderProducts(this.availableProducts.filter(p => categories.filter(c => c.key === p.category.key).length > 0));
       }
     }
     return []; // default return nothing!
+  }
+
+  private orderProducts(products: Product[]): Product[] {
+    return products.sort((p1: Product, p2: Product) => {
+      const p1Fav = this.favouriteProducts.filter(p => p.id === p1.id).length > 0;
+      const p2Fav = this.favouriteProducts.filter(p => p.id === p2.id).length
+      if ((p1Fav && p2Fav) || (!p1Fav && !p2Fav)) {
+        if (p1.category.content === p2.category.content) {
+          return p1.title <= p2.title ? -1 : 1;
+        }
+        return p1.category.content <= p2.category.content ? -1 : 1;
+      }
+      return p1Fav ? -1 : 1;
+    });
+  }
+
+  private orderCategories(categories: Category[]): Category[] {
+    return categories.sort((c1: Category, c2: Category) => {
+      return c1.content <= c2.content ? -1 : 1;
+    });
   }
 
 
@@ -103,6 +124,32 @@ export class CoreDataService {
     return this.persistencyService.productFavourites;
   }
 
+  public isFavourite(p: Product): boolean {
+    const isF = this.favouriteProducts.filter(pr => pr.id === p.id).length > 0;
+    return isF;
+  }
+
+  public updateFavouriteProduct(p: Product): void {
+    console.log("updating...");
+    const vp = this.favouriteProducts;
+    if (this.favouriteProducts.filter(pr => pr.id === p.id).length === 0) {
+      vp.push(p);
+      this.favouriteProducts = vp;
+    } else {
+      this.favouriteProducts = vp.filter(pr => pr.id !== p.id);
+    }
+  }
+
+  public updateFavouriteCategory(c: Category) {
+    const vf = this.favouriteCategories;
+    if (vf.filter(cat => c.key === cat.key).length > 0) {
+      this.favouriteCategories = vf.filter(cat => cat.key !== c.key);
+    } else {
+      vf.push(c);
+      this.favouriteCategories = vf;
+    }
+  }
+
   public set favouriteProducts(p: Product[]) {
     this.persistencyService.updateFavouriteProducts(p);
   }
@@ -112,6 +159,7 @@ export class CoreDataService {
   }
 
   public set favouriteCategories(c: Category[]) {
+    console.log('fav cat update');
     this.persistencyService.updateFavouriteCategories(c);
   }
 

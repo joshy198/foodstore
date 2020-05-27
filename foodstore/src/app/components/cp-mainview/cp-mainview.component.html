@@ -12,7 +12,7 @@
                         *ngFor="let category of dataService.getCategoriesFor(selectedRegion)" [c]="category"
                         [productAmount]="getNumberOfProducts(category)"
                         [favourite]="getFavouriteStyle(category)"
-                        (favouriteClicked)="updateFavourite(category)"
+                        (favouriteClicked)="updateCategroyFavourites(category)"
                         (click)="selectCategory(category)"></cp-category-button>
     <div class="nothing-to-show no-center" *ngIf="dataService.getCategoriesFor(selectedRegion).length===0">{{translation.noCategory}}</div>
   </div>

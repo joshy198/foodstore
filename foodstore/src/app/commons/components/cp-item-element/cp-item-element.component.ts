@@ -11,8 +11,10 @@ import {LanguageService} from '../../translations/language.service';
 export class ItemElementComponent implements OnInit {
 
   @Input() public product: Product;
+  @Input() public isFavourite=false;
   @Input() public available = true;
   @Output() public addToCart = new EventEmitter<Product>();
+  @Output() public toggleFavourite=new EventEmitter<Product>();
   private timeout = 0;
   public isAdded = false;
 

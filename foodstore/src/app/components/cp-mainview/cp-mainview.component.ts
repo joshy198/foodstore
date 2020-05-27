@@ -3,10 +3,10 @@ import {CoreDataService} from '../../commons/services/core-data.service';
 import {AppTranslations} from '../../commons/translations/app-translations';
 import {Category} from '../../commons/model/category';
 import {Product} from '../../commons/model/product';
-import {FavouriteStyle} from '../../commons/components/cp-category-button/favourite-style';
 import {Router} from '@angular/router';
 import {NavigationService} from '../../commons/services/navigation.service';
 import {NavigationState} from '../../commons/model/navigation-state';
+import {FavouriteStyle} from "../../commons/components/cp-category-button/favourite-style";
 
 @Component({
   selector: 'cp-mainview',
@@ -14,15 +14,14 @@ import {NavigationState} from '../../commons/model/navigation-state';
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./cp-mainview.component.scss']
 })
-export class MainviewComponent implements OnInit,OnDestroy {
-
-  public favCategories: Category[] = [];
-  public favProducts: Product[] = [];
+export class MainviewComponent implements OnInit, OnDestroy {
   public selectedCategories: Category[] = [];
   public requestedProducts: Product[] = [];
+  public favProducts: Product[] = [];
+  public favCategories: Category[] = [];
   public selectedRegion: Category;
   public showCategories = true;
-  public timer:number;
+  public timer: number;
   public regions: Category[] = [new Category('myShop', this.translation.mystore, 'store'),
     new Category('allShop', this.translation.fullstore, 'market')];
 
@@ -37,8 +36,6 @@ export class MainviewComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit(): void {
-    this.favCategories = this.dataService.favouriteCategories;
-    this.favProducts = this.dataService.favouriteProducts;
     if (this.dataService.selectedRegion) {
       this.selectedRegion = this.dataService.selectedRegion;
     } else {
@@ -46,14 +43,22 @@ export class MainviewComponent implements OnInit,OnDestroy {
       this.selectedRegion = this.regions[1];
     }
     this.selectedCategories = this.dataService.selectedCategories;
-    this.requestProducts();
 
-    this.timer=setInterval(()=>{
-      this.requestProducts();
-    },1000);
-    // this.favProducts.push(this.dataService.availableProducts[0]);
+
+    // loads products from backend to UI, starts updating fast, as the initial retrieving might take a while
+    this.timer = setInterval(() => {
+      if (this.dataService.getProducts(this.selectedRegion, this.selectedCategories).length != this.requestedProducts.length) {
+        this.reloadFromService();
+      }
+      // at least some products have been fetched
+      if (this.dataService.availableProducts.length > 0) {
+        clearInterval(this.timer);
+        /*setInterval(() => {
+          this.reloadFromService();
+        }, 10000);*/
+      }
+    }, 500);
   }
-
 
   public getNumberOfProducts(c: Category): number {
     return this.dataService.availableProducts.filter(p => p.category.key === c.key).length;
@@ -67,14 +72,6 @@ export class MainviewComponent implements OnInit,OnDestroy {
     }));
   }
 
-  public updateFavourite(c: Category) {
-    if (this.favCategories.filter(cat => c.key === cat.key).length > 0) {
-      this.favCategories = this.favCategories.filter(cat => cat.key !== c.key);
-    } else {
-      this.favCategories.push(c);
-    }
-    this.dataService.favouriteCategories = this.favCategories;
-  }
 
   public selectCategory(c: Category) {
     if (this.selectedCategories.filter(cat => cat.key === c.key).length > 0) {
@@ -82,7 +79,7 @@ export class MainviewComponent implements OnInit,OnDestroy {
     } else {
       this.selectedCategories.push(c);
     }
-    this.requestProducts();
+    this.reloadFromService();
   }
 
   public isCategorySelected(c: Category): boolean {
@@ -95,26 +92,41 @@ export class MainviewComponent implements OnInit,OnDestroy {
     } else {
       this.selectedRegion = c;
       this.selectedCategories = [];
-      this.requestProducts();
+      this.reloadFromService();
     }
   }
 
-  public requestProducts() {
+  public reloadFromService() {
+    this.favCategories = this.dataService.favouriteCategories;
+    this.favProducts = this.dataService.favouriteProducts;
     this.dataService.selectedCategories = this.selectedCategories;
     this.dataService.selectedRegion = this.selectedRegion;
     this.requestedProducts = this.dataService.getProducts(this.selectedRegion, this.selectedCategories);
+  }
+
+  public updateCategroyFavourites(category: Category) {
+    this.dataService.updateFavouriteCategory(category)
+    this.reloadFromService();
   }
 
 
   public getFavouriteStyle(c: Category): FavouriteStyle {
     if (this.favCategories.filter(cat => cat.key === c.key).length > 0) {
       if (this.favProducts.filter(p => p.category.key === c.key).length > 0) {
+        if (c.content === 'Essentials')
+          console.log('PARTIAL FULL');
         return FavouriteStyle.PARTIAL_FULL;
       }
+      if (c.content === 'Essentials')
+        console.log('FULL');
       return FavouriteStyle.FULL;
     } else if (this.favProducts.filter(p => p.category.key === c.key).length > 0) {
+      if (c.content === 'Essentials')
+        console.log('PARTIAL');
       return FavouriteStyle.PARTIAL;
     }
+    if (c.content === 'Essentials')
+      console.log('NONE');
     return FavouriteStyle.NONE;
   }
 

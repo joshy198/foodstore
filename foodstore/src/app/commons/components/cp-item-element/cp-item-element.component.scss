@@ -13,10 +13,12 @@ cp-item-element {
     border: 2px solid $color-primary;
     border-bottom: 0px;
     // border-bottom: 2px solid $color-primary;
-     padding-bottom: 0.2rem;
+    padding-left: 1rem;
+    padding-right: 0.5rem;
+    padding-bottom: 0.2rem;
 
     .naming {
-      margin-left: 1rem;
+      flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -25,9 +27,37 @@ cp-item-element {
       font-weight: bold;
     }
 
-    .favourite {
+  }
+  .favourite {
+    display: flex;
+    justify-content: flex-end;
 
+    .full-star-active {
+      width: 2.5rem;
+      height: 2.5rem;
+      transition: background-image 2s ease-in-out;
+      background-image: url(../../../../assets/active-star.svg);
+      background-size: cover;
     }
+
+    .full-star-active:hover {
+      background-image: url(../../../../assets/inactive-star.svg);
+      background-size: cover;
+    }
+
+    .full-star-inactive {
+      width: 2.5rem;
+      height: 2.5rem;
+      transition: background-image 2s ease-in-out;
+      background-image: url(../../../../assets/inactive-star.svg);
+      background-size: cover;
+    }
+
+    .full-star-inactive:hover {
+      background-image: url(../../../../assets/active-star.svg);
+      background-size: cover;
+    }
+
   }
 
   .container {
@@ -53,23 +83,22 @@ cp-item-element {
 
     .mobile-box {
       display: flex;
-      flex-direction: column;
       justify-content: space-between;
       flex: 1;
       min-width: 35%;
 
+      .favourite{
+        margin-left: -1.5rem;
+        margin-top: -0.5rem;
+      }
+
       .text {
         display: flex;
-        flex: 1;
-      }
-
-      .name {
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 1rem;
         font-size: $font-size-medium;
-      }
-
-      .availability {
-        display: flex;
-
+        flex: 1;
       }
     }
 
@@ -125,7 +154,7 @@ cp-item-element {
     .desktop-header {
       display: none;
     }
-    .container{
+    .container {
       border: unset;
     }
     .desktop-price {
@@ -143,6 +172,7 @@ cp-item-element {
     }
     .container {
       border: unset;
+
       .mobile-box {
 
         .text {
