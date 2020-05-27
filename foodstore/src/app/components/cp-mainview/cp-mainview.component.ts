@@ -50,7 +50,6 @@ export class MainviewComponent implements OnInit,OnDestroy {
 
     this.timer=setInterval(()=>{
       this.requestProducts();
-      console.log('Requesting...');
     },1000);
     // this.favProducts.push(this.dataService.availableProducts[0]);
   }
@@ -101,7 +100,6 @@ export class MainviewComponent implements OnInit,OnDestroy {
   }
 
   public requestProducts() {
-    console.log('REQUEST PRODUCTS');
     this.dataService.selectedCategories = this.selectedCategories;
     this.dataService.selectedRegion = this.selectedRegion;
     this.requestedProducts = this.dataService.getProducts(this.selectedRegion, this.selectedCategories);
