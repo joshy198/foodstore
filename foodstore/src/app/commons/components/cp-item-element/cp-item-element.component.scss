@@ -9,8 +9,12 @@ cp-item-element {
   .desktop-header {
     display: flex;
     height: 2.5rem;
+    background-color: $color-primary-opc10;
+    border-left: 2px solid $color-primary;
+    border-top: 2px solid $color-primary;
+    border-right: 2px solid $color-primary;
     // border-bottom: 2px solid $color-primary;
-    margin-bottom: 0.2rem;
+     padding-bottom: 0.2rem;
 
     .naming {
       margin-left: 1rem;
@@ -30,6 +34,9 @@ cp-item-element {
   .container {
     display: flex;
     flex: 1;
+    border-left: 2px solid $color-primary;
+    border-right: 2px solid $color-primary;
+
 
     .img-box {
       display: flex;
@@ -159,7 +166,7 @@ cp-item-element {
     width: 15rem;
     height: 15rem;
     padding-bottom: 0px;
-    border: 2px solid $color-primary;
+    // border: 2px solid $color-primary;
     flex-direction: column;
     .container {
       flex: 1;
@@ -175,13 +182,7 @@ cp-item-element {
       }
 
       .mobile-box {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-
-        .text {
-          display: none
-        }
+        display: none;
       }
     }
     .mobile-add-to-cart {
@@ -195,9 +196,8 @@ cp-item-element {
       padding-left: 1rem;
       padding-right: 1rem;
       padding-top: 2px;
-      margin-left: -2px;
       margin-bottom: -2px;
-      width: calc(13rem + 4px);
+      width: 13rem;
 
       &.added {
         background-color: $color-positive;

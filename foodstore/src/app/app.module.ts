@@ -11,6 +11,7 @@ import {LocalStorageService} from "./commons/services/localstorage.service";
 import {NavigationService} from "./commons/services/navigation.service";
 import {MainviewModule} from "./components/cp-mainview/cp-mainview.module";
 import {RemoteApiService} from "./commons/services/remote-api.service";
+import {CartModule} from "./components/cp-cart/cp-cart.module";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {RemoteApiService} from "./commons/services/remote-api.service";
     BrowserModule,
     AppRoutingModule,
     MainviewModule,
+    CartModule,
     DeviceDetectorModule.forRoot(),
     RouterModule.forRoot(APP_ROUTES, {useHash: false, enableTracing: false})
   ],
