@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Product} from '../model/product';
 import {Category} from '../model/category';
-import {BehaviorSubject, Observable} from 'rxjs';
 import {CartItem} from '../model/cart';
 import {Language} from '../translations/language';
+import {isNotNullOrUndefined} from "codelyzer/util/isNotNullOrUndefined";
 
 const CART_KEY = 'customer-cart';
 const FAV_PRODUCT_KEY = 'customer-fav-product';
@@ -38,10 +38,14 @@ export class LocalStorageService {
   }
 
   public get storedLanguage(): Language {
-    return this.userLanguage;
+    if (isNotNullOrUndefined(this.userLanguage)) {
+      return this.userLanguage;
+    }
+    return Language.EN;
   }
 
   public storeLanguage(language: Language): boolean {
+    this.userLanguage = language;
     if (window.localStorage) {
       localStorage.setItem(FAV_LANGUAGE_KEY, language);
       return true;
@@ -50,7 +54,12 @@ export class LocalStorageService {
   }
 
   public get cart(): CartItem[] {
-    return this.currentCart;
+    const ci:CartItem[]=[];
+    for(const c of this.currentCart)
+    {
+      ci.push(c);
+    }
+    return ci;
   }
 
   public set cart(c: CartItem[]) {
@@ -59,11 +68,19 @@ export class LocalStorageService {
   }
 
   public get productFavourites(): Product[] {
-    return this.favouritedProducts;
+    const pr:Product[]=[];
+    for(const p of this.favouritedProducts) {
+      pr.push(p);
+    }
+    return pr;
   }
 
   public get categoryFavourites(): Category[] {
-    return this.favouritedCategories;
+    const ca:Category[]=[];
+    for(const c of this.favouritedCategories) {
+      ca.push(c);
+    }
+    return ca;
   }
 
   public updateFavouriteProducts(products: Product[]) {
@@ -101,4 +118,5 @@ export class LocalStorageService {
     }
     return false;
   }
+
 }

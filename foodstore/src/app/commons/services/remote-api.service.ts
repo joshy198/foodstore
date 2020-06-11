@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {map} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {Category} from '../model/category';
@@ -6,19 +6,18 @@ import {Product} from '../model/product';
 import {Observable} from 'rxjs';
 import {ProductProperty} from '../model/product-property';
 import {LanguageService} from '../translations/language.service';
-
-const API_URL = ' http://localhost:1880';
+import DEFAULT_URL from "../../../settings";
 
 @Injectable()
 export class RemoteApiService {
   public categories: Category[] = [];
 
-  public constructor(private http: HttpClient, private languageService: LanguageService) {
+  public constructor(private http: HttpClient, private languageService: LanguageService,  @Inject('DEFAULT_URL') public apiUrl) {
   }
 
   public requestCategories(): Observable<Category[]> {
 
-    return this.http.get(API_URL + '/category?lang=' + this.languageService.currentLanguage).pipe(
+    return this.http.get(this.apiUrl + '/category?lang=' + this.languageService.currentLanguage).pipe(
       map((data: any) => {
         for (const cat of data) {
           this.mapAsCategory(cat);
@@ -28,7 +27,7 @@ export class RemoteApiService {
   }
 
   public requestProducts(): Observable<Product[]> {
-    return this.http.get(API_URL + '/products?lang=' + this.languageService.currentLanguage).pipe(
+    return this.http.get(this.apiUrl + '/products?lang=' + this.languageService.currentLanguage).pipe(
       map((data: any) => {
         const products: Product[] = [];
         console.log(data);
@@ -64,7 +63,7 @@ export class RemoteApiService {
   }
 
   public requestPartialProductUpdate(date): Observable<Product[]> {
-    return this.http.get(API_URL + '/products?updatedAfter=' + date + '&lang=' +
+    return this.http.get(this.apiUrl + '/products?updatedAfter=' + date + '&lang=' +
       this.languageService.currentLanguage).pipe(map((data: any) => {
       const products: Product[] = [];
       for (const product of data.products) {
