@@ -6,7 +6,7 @@ import {Product} from '../model/product';
 import {Observable} from 'rxjs';
 import {ProductProperty} from '../model/product-property';
 import {LanguageService} from '../translations/language.service';
-import DEFAULT_URL from "../../../settings";
+import DEFAULT_URL from '../../../settings';
 
 @Injectable()
 export class RemoteApiService {

@@ -123,6 +123,19 @@ export class CoreDataService {
   public get favouriteProducts(): Product[] {
     return this.persistencyService.productFavourites;
   }
+  public set favouriteProducts(p: Product[]) {
+    this.persistencyService.updateFavouriteProducts(p);
+  }
+
+  public get favouriteCategories(): Category[] {
+    return this.persistencyService.categoryFavourites;
+  }
+
+  public set favouriteCategories(c: Category[]) {
+    console.log('fav cat update');
+    this.persistencyService.updateFavouriteCategories(c);
+  }
+
 
   public isFavourite(p: Product): boolean {
     const isF = this.favouriteProducts.filter(pr => pr.id === p.id).length > 0;
@@ -130,7 +143,7 @@ export class CoreDataService {
   }
 
   public updateFavouriteProduct(p: Product): void {
-    console.log("updating...");
+    console.log('updating...');
     const vp = this.favouriteProducts;
     if (this.favouriteProducts.filter(pr => pr.id === p.id).length === 0) {
       vp.push(p);
@@ -149,20 +162,6 @@ export class CoreDataService {
       this.favouriteCategories = vf;
     }
   }
-
-  public set favouriteProducts(p: Product[]) {
-    this.persistencyService.updateFavouriteProducts(p);
-  }
-
-  public get favouriteCategories(): Category[] {
-    return this.persistencyService.categoryFavourites;
-  }
-
-  public set favouriteCategories(c: Category[]) {
-    console.log('fav cat update');
-    this.persistencyService.updateFavouriteCategories(c);
-  }
-
   private fillWithDummyData(): void {
     this.availableCategories = [];
     this.availableCategories.push(new Category('vegetables', 'Vegetables', 'vegetables'));

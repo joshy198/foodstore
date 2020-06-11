@@ -1,13 +1,13 @@
 import {Language} from '../translations/language';
-import {LocalStorageService} from "./localstorage.service";
-import {Category} from "../model/category";
-import {CartItem} from "../model/cart";
-import {Product} from "../model/product";
+import {LocalStorageService} from './localstorage.service';
+import {Category} from '../model/category';
+import {CartItem} from '../model/cart';
+import {Product} from '../model/product';
 
 describe('LocalStorageService', () => {
 
   beforeEach(() => {
-    let service = new LocalStorageService();
+    const service = new LocalStorageService();
     service.updateFavouriteCategories([]);
     service.updateFavouriteProducts([]);
     service.cart = [];
@@ -17,18 +17,18 @@ describe('LocalStorageService', () => {
   // verify language is working as expected
 
   it('checkDefaultLanguage', () => {
-    let service = new LocalStorageService();
+    const service = new LocalStorageService();
     expect(service.storedLanguage).toEqual(Language.EN);
   });
 
   it('checkSetNullAsLanguage', () => {
-    let service = new LocalStorageService();
+    const service = new LocalStorageService();
     service.storeLanguage(null);
     expect(service.storedLanguage).toEqual(Language.EN);
   });
 
   it('checkSetGermanAsLanguage', () => {
-    let service = new LocalStorageService();
+    const service = new LocalStorageService();
     service.storeLanguage(Language.DE);
     expect(service.storedLanguage).toEqual(Language.DE);
   });
@@ -36,13 +36,13 @@ describe('LocalStorageService', () => {
   // verify categories
 
   it('checkCategoriesEmpty', () => {
-    let service = new LocalStorageService();
+    const service = new LocalStorageService();
     expect(service.categoryFavourites).toEqual([]);
   });
 
   it('checkAddCategories', () => {
-    let service = new LocalStorageService();
-    let categories=service.categoryFavourites;
+    const service = new LocalStorageService();
+    const categories=service.categoryFavourites;
     expect(service.categoryFavourites.length).toBe(0);
     categories.push(new Category('1', '', ''));
     categories.push(new Category('2', '', ''));
@@ -58,14 +58,14 @@ describe('LocalStorageService', () => {
   // products
 
   it('checkProductsEmpty', () => {
-    let service = new LocalStorageService();
-    let products = service.productFavourites;
+    const service = new LocalStorageService();
+    const products = service.productFavourites;
     expect(products.length).toBe(0);
   });
 
   it('checkProductFilled', () => {
-    let service = new LocalStorageService();
-    let products=service.productFavourites;
+    const service = new LocalStorageService();
+    const products=service.productFavourites;
     expect(service.productFavourites.length).toBe(0);
     products.push(new Product('id1', 't1', '', 1, '', '', new Category('cat1', '', ''), '', 5));
     products.push(new Product('id2', 't2', '', 5, '', '', new Category('cat2', '', ''), '', 1));
@@ -82,13 +82,13 @@ describe('LocalStorageService', () => {
   // cart
 
   it('checkCartEmpty', () => {
-    let service = new LocalStorageService();
+    const service = new LocalStorageService();
     expect(service.cart).toEqual([]);
   });
 
   it('checkCartFilled', () => {
-    let service = new LocalStorageService();
-    let cart=service.cart;
+    const service = new LocalStorageService();
+    const cart=service.cart;
     expect(service.cart.length).toBe(0);
     cart.push(new CartItem(new Product('id1', 't1', '', 1, '', '', new Category('cat1', '', ''), '', 5), 2));
     cart.push(new CartItem(new Product('id2', 't2', '', 5, '', '', new Category('cat1', '', ''), '', 5), 4));
@@ -101,7 +101,7 @@ describe('LocalStorageService', () => {
 
   /*
   it('', () => {
-    let service = new LocalStorageService();
+    const service = new LocalStorageService();
     expect().toEqual();
   });
   */

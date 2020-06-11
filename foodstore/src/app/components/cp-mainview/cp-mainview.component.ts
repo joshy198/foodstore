@@ -6,7 +6,7 @@ import {Product} from '../../commons/model/product';
 import {Router} from '@angular/router';
 import {NavigationService} from '../../commons/services/navigation.service';
 import {NavigationState} from '../../commons/model/navigation-state';
-import {FavouriteStyle} from "../../commons/components/cp-category-button/favourite-style";
+import {FavouriteStyle} from '../../commons/components/cp-category-button/favourite-style';
 
 @Component({
   selector: 'cp-mainview',
@@ -47,7 +47,7 @@ export class MainviewComponent implements OnInit, OnDestroy {
 
     // loads products from backend to UI, starts updating fast, as the initial retrieving might take a while
     this.timer = setInterval(() => {
-      if (this.dataService.getProducts(this.selectedRegion, this.selectedCategories).length != this.requestedProducts.length) {
+      if (this.dataService.getProducts(this.selectedRegion, this.selectedCategories).length !== this.requestedProducts.length) {
         this.reloadFromService();
       }
       // at least some products have been fetched
