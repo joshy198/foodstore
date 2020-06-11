@@ -1,3 +1,5 @@
+Travis-CI Build Status: [![Build Status](https://travis-ci.com/joshy198/foodstore.svg?branch=master)](https://travis-ci.com/joshy198/foodstore)
+
 # Foodstore
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
