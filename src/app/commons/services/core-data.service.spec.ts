@@ -1,99 +1,99 @@
-import {getTestBed, TestBed} from "@angular/core/testing";
-import {RemoteApiService} from "./remote-api.service";
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {LanguageService} from "../translations/language.service";
-import {LocalStorageService} from "./localstorage.service";
-import {Language} from "../translations/language";
-import {CoreDataService} from "./core-data.service";
-import {Category} from "../model/category";
+import {getTestBed, TestBed} from '@angular/core/testing';
+import {RemoteApiService} from './remote-api.service';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {LanguageService} from '../translations/language.service';
+import {LocalStorageService} from './localstorage.service';
+import {Language} from '../translations/language';
+import {CoreDataService} from './core-data.service';
+import {Category} from '../model/category';
 
 describe('CoreDataService', () => {
   let service: CoreDataService;
   let languageService: LanguageService;
   let httpMock: HttpTestingController;
-  const testURL = 'http://host:1234'; //to verify injecting url works as expected
+  const testURL = 'http://host:1234'; // to verify injecting url works as expected
   const dummyProducts = [
     {
-      "id": "id2",
-      "title": "Beef Steak",
-      "descr": "Nice Steak. Made from local cows. Hand crafted.",
-      "price": 49.99,
-      "unit": "1kg",
-      "imageUrl": "https://bit.ly/2WVnj2E",
-      "categoryKey": "meat",
-      "updatedAt": "2020-06-23T22:00:00.000Z",
-      "quantity": 500,
-      "properties":
-        [{"value": "Cow", "name": "Animal of origin"},
-          {"value": "Austria", "name": "Country of origin"}]
+      id: 'id2',
+      title: 'Beef Steak',
+      descr: 'Nice Steak. Made from local cows. Hand crafted.',
+      price: 49.99,
+      unit: '1kg',
+      imageUrl: 'https://bit.ly/2WVnj2E',
+      categoryKey: 'meat',
+      updatedAt: '2020-06-23T22:00:00.000Z',
+      quantity: 500,
+      properties:
+        [{value: 'Cow', name: 'Animal of origin'},
+          {value: 'Austria', name: 'Country of origin'}]
     },
     {
-      "id": "id3",
-      "title": "Pork Steak",
-      "descr": "Nice Steak. Made from local pigs. Hand crafted.",
-      "price": 29.99,
-      "unit": "1kg",
-      "imageUrl": "https://bit.ly/2ytutSm",
-      "categoryKey": "meat",
-      "updatedAt": "2020-06-23T22:00:00.000Z",
-      "quantity": 500,
-      "properties":
-        [{"value": "Pig", "name": "Animal of origin"},
-          {"value": "Austria", "name": "Country of origin"}]
+      id: 'id3',
+      title: 'Pork Steak',
+      descr: 'Nice Steak. Made from local pigs. Hand crafted.',
+      price: 29.99,
+      unit: '1kg',
+      imageUrl: 'https://bit.ly/2ytutSm',
+      categoryKey: 'meat',
+      updatedAt: '2020-06-23T22:00:00.000Z',
+      quantity: 500,
+      properties:
+        [{value: 'Pig', name: 'Animal of origin'},
+          {value: 'Austria', name: 'Country of origin'}]
     },
     {
-      "id": "id4",
-      "title": "Chicken Breast",
-      "descr": "Nice Breast. Made from local chickens. Hand crafted.",
-      "price": 14.99,
-      "unit": "1kg",
-      "imageUrl": "https://bit.ly/2zjoYX0",
-      "categoryKey": "meat",
-      "updatedAt": "2020-06-23T22:00:00.000Z",
-      "quantity": 500,
-      "properties":
-        [{"value": "Chicken", "name": "Animal of origin"},
-          {"value": "Austria", "name": "Country of origin"}]
+      id: 'id4',
+      title: 'Chicken Breast',
+      descr: 'Nice Breast. Made from local chickens. Hand crafted.',
+      price: 14.99,
+      unit: '1kg',
+      imageUrl: 'https://bit.ly/2zjoYX0',
+      categoryKey: 'meat',
+      updatedAt: '2020-06-23T22:00:00.000Z',
+      quantity: 500,
+      properties:
+        [{value: 'Chicken', name: 'Animal of origin'},
+          {value: 'Austria', name: 'Country of origin'}]
     },
     {
-      "id": "id5",
-      "title": "Gouda",
-      "descr": "Classic cheese. Made from local produce. Hand crafted.",
-      "price": 19.99,
-      "unit": "1kg",
-      "imageUrl": "https://bit.ly/3bSWyQM",
-      "categoryKey": "cheese",
-      "updatedAt": "2020-06-23T22:00:00.000Z",
-      "quantity": 300,
-      "properties": [{"value": "Austria", "name": "Country of origin"}]
+      id: 'id5',
+      title: 'Gouda',
+      descr: 'Classic cheese. Made from local produce. Hand crafted.',
+      price: 19.99,
+      unit: '1kg',
+      imageUrl: 'https://bit.ly/3bSWyQM',
+      categoryKey: 'cheese',
+      updatedAt: '2020-06-23T22:00:00.000Z',
+      quantity: 300,
+      properties: [{value: 'Austria', name: 'Country of origin'}]
     },
     {
-      "id": "id8",
-      "title": "Potatoes",
-      "descr": "Bio product. Low-starch type. Locally harvested and packaged by hand.",
-      "price": 6.99,
-      "unit": "1kg",
-      "imageUrl": "https://bit.ly/2WWJwNV",
-      "categoryKey": "vegetables",
-      "updatedAt": "2020-06-23T22:00:00.000Z",
-      "quantity": 1000,
-      "properties": [{"value": "Austria", "name": "Country of origin"}]
+      id: 'id8',
+      title: 'Potatoes',
+      descr: 'Bio product. Low-starch type. Locally harvested and packaged by hand.',
+      price: 6.99,
+      unit: '1kg',
+      imageUrl: 'https://bit.ly/2WWJwNV',
+      categoryKey: 'vegetables',
+      updatedAt: '2020-06-23T22:00:00.000Z',
+      quantity: 1000,
+      properties: [{value: 'Austria', name: 'Country of origin'}]
     }, {
-      "id": "id9",
-      "title": "Carrots",
-      "descr": "Bio product. Locally harvested and packaged by hand.",
-      "price": 6.99,
-      "unit": "1kg",
-      "imageUrl": "https://bit.ly/2TzSrCQ",
-      "categoryKey": "vegetables",
-      "updatedAt": "2020-06-23T22:00:00.000Z",
-      "quantity": 500,
-      "properties": [{"value": "Austria", "name": "Country of origin"}]
+      id: 'id9',
+      title: 'Carrots',
+      descr: 'Bio product. Locally harvested and packaged by hand.',
+      price: 6.99,
+      unit: '1kg',
+      imageUrl: 'https://bit.ly/2TzSrCQ',
+      categoryKey: 'vegetables',
+      updatedAt: '2020-06-23T22:00:00.000Z',
+      quantity: 500,
+      properties: [{value: 'Austria', name: 'Country of origin'}]
     }];
   const dummyCategory = [
-    {"key": "meat", "content": "Meat Products", "icon": "sausage"},
-    {"key": "cheese", "content": "Cheese Products", "icon": "cheeses"},
-    {"key": "vegetables", "content": "Vegetables", "icon": "vegetables"}];
+    {key: 'meat', content: 'Meat Products', icon: 'sausage'},
+    {key: 'cheese', content: 'Cheese Products', icon: 'cheeses'},
+    {key: 'vegetables', content: 'Vegetables', icon: 'vegetables'}];
 
   const myShop = new Category('myShop', 'myShop', 'store');
   const allShop = new Category('allShop', 'allShop', 'market');
@@ -116,10 +116,10 @@ describe('CoreDataService', () => {
     httpMock = injector.inject(HttpTestingController);
     service = injector.inject(CoreDataService);
     const catReq = httpMock.expectOne(testURL + '/category?lang=' + languageService.currentLanguage);
-    expect(catReq.request.method).toBe("GET");
+    expect(catReq.request.method).toBe('GET');
     catReq.flush(dummyCategory);
     const prodReq = httpMock.expectOne(testURL + '/products?lang=' + languageService.currentLanguage);
-    expect(prodReq.request.method).toBe("GET");
+    expect(prodReq.request.method).toBe('GET');
     prodReq.flush(dummyProducts);
   });
   afterEach(() => {

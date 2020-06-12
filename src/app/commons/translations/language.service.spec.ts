@@ -1,7 +1,7 @@
-import {LocalStorageService} from "../services/localstorage.service";
-import {Language} from "./language";
-import {LanguageService} from "./language.service";
-import {getTestBed, TestBed} from "@angular/core/testing";
+import {LocalStorageService} from '../services/localstorage.service';
+import {Language} from './language';
+import {LanguageService} from './language.service';
+import {getTestBed, TestBed} from '@angular/core/testing';
 
 describe('LanguageService', () => {
   let service: LanguageService;

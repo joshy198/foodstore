@@ -3,8 +3,8 @@ import {LocalStorageService} from './localstorage.service';
 import {Category} from '../model/category';
 import {CartItem} from '../model/cart';
 import {Product} from '../model/product';
-import {isNotNullOrUndefined} from "codelyzer/util/isNotNullOrUndefined";
-import {getTestBed, TestBed} from "@angular/core/testing";
+import {isNotNullOrUndefined} from 'codelyzer/util/isNotNullOrUndefined';
+import {getTestBed, TestBed} from '@angular/core/testing';
 
 describe('LocalStorageService', () => {
   let service: LocalStorageService;
