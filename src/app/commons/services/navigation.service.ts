@@ -40,7 +40,7 @@ export class NavigationService {
     this.currentState.push(new NavigationState('/home'));
   }
 
-  public canNavigateBack() {
+  public canNavigateBack(): boolean {
     return this.currentState.length > 1;
   }
 

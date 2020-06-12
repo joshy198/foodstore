@@ -32,6 +32,7 @@ export class LanguageService {
   }
 
   public toViewString(language: Language): string {
+    return Object.keys(Language)[Object.values(Language).indexOf(language)]; // key used as view string
     switch (language) {
       case Language.AT:
         return 'AT';
@@ -42,7 +43,9 @@ export class LanguageService {
     }
   }
 
-  public viewToLanguage(view: string) {
+  public viewToLanguage(view: string): Language {
+    return Language[view];
+    // Object.keys(Language)[Object.values(Language).indexOf(language)];
     switch (view) {
       case 'AT':
         return Language.AT;
@@ -50,10 +53,8 @@ export class LanguageService {
         return Language.DE;
       case 'EN':
         return Language.EN;
-
     }
   }
-
 
   public get availableLanguages(): string[] {
     return Object.keys(Language);

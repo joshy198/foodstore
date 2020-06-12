@@ -38,10 +38,7 @@ export class LocalStorageService {
   }
 
   public get storedLanguage(): Language {
-    if (isNotNullOrUndefined(this.userLanguage)) {
       return this.userLanguage;
-    }
-    return Language.EN;
   }
 
   public storeLanguage(language: Language): boolean {
