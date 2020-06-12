@@ -25,7 +25,6 @@ export class CoreDataService {
       this.availableCategories = res;
       remoteService.requestProducts().subscribe(rb => {
         this.availableProducts = rb;
-        console.log(this.availableProducts);
       });
     });
     /*this.remoteService.requestPurchases().subscribe(res => {
@@ -132,7 +131,6 @@ export class CoreDataService {
   }
 
   public set favouriteCategories(c: Category[]) {
-    console.log('fav cat update');
     this.persistencyService.updateFavouriteCategories(c);
   }
 
@@ -143,7 +141,6 @@ export class CoreDataService {
   }
 
   public updateFavouriteProduct(p: Product): void {
-    console.log('updating...');
     const vp = this.favouriteProducts;
     if (this.favouriteProducts.filter(pr => pr.id === p.id).length === 0) {
       vp.push(p);

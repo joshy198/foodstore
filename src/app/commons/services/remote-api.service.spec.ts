@@ -145,6 +145,4 @@ describe('RemoteApiService', () => {
       DEreq.flush(dummyProducts);
     });
   })
-
-
 });

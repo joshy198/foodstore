@@ -24,7 +24,6 @@ export class AppTranslations {
   public get cart(): string {
     switch (this.languageService.currentLanguage) {
       case Language.AT:
-        return 'Warenkorb';
       case Language.DE:
         return 'Warenkorb';
       default:
@@ -45,7 +44,6 @@ export class AppTranslations {
   public get settings(): string {
     switch (this.languageService.currentLanguage) {
       case Language.AT:
-        return 'Einstellungen';
       case Language.DE:
         return 'Einstellungen';
       default:
@@ -85,7 +83,6 @@ export class AppTranslations {
         return 'No previous orders';
     }
   }
-
 
   public get about(): string {
     switch (this.languageService.currentLanguage) {

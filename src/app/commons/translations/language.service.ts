@@ -13,7 +13,6 @@ export class LanguageService {
 
   public set currentLanguage(language: Language) {
     this.language = language;
-    console.log('Storing language');
     this.persistentStorage.storeLanguage(this.language);
   }
 
@@ -31,25 +30,24 @@ export class LanguageService {
           this.language = Language.EN;
           break;
       }
-    } else {
     }
   }
 
   public toViewString(language: Language): string {
     return Object.keys(Language)[Object.values(Language).indexOf(language)]; // key used as view string
-    switch (language) {
+    /*switch (language) { // maybe at a later stage customize language text
       case Language.AT:
         return 'AT';
       case Language.DE:
         return 'DE';
       case Language.EN:
         return 'EN';
-    }
+    }*/
   }
 
   public viewToLanguage(view: string): Language {
     return Language[view];
-    // Object.keys(Language)[Object.values(Language).indexOf(language)];
+    /* // if toViewString uses custom view language
     switch (view) {
       case 'AT':
         return Language.AT;
@@ -57,7 +55,7 @@ export class LanguageService {
         return Language.DE;
       case 'EN':
         return Language.EN;
-    }
+    }*/
   }
 
   public get availableLanguages(): string[] {

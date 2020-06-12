@@ -39,7 +39,6 @@ export class MainviewComponent implements OnInit, OnDestroy {
     if (this.dataService.selectedRegion) {
       this.selectedRegion = this.dataService.selectedRegion;
     } else {
-      console.log('REGION IS NULL');
       this.selectedRegion = this.regions[1];
     }
     this.selectedCategories = this.dataService.selectedCategories;
@@ -114,19 +113,15 @@ export class MainviewComponent implements OnInit, OnDestroy {
     if (this.favCategories.filter(cat => cat.key === c.key).length > 0) {
       if (this.favProducts.filter(p => p.category.key === c.key).length > 0) {
         if (c.content === 'Essentials')
-          console.log('PARTIAL FULL');
         return FavouriteStyle.PARTIAL_FULL;
       }
       if (c.content === 'Essentials')
-        console.log('FULL');
       return FavouriteStyle.FULL;
     } else if (this.favProducts.filter(p => p.category.key === c.key).length > 0) {
       if (c.content === 'Essentials')
-        console.log('PARTIAL');
       return FavouriteStyle.PARTIAL;
     }
     if (c.content === 'Essentials')
-      console.log('NONE');
     return FavouriteStyle.NONE;
   }
 
