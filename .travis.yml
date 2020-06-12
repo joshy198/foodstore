@@ -1,14 +1,9 @@
 language: node_js
 node_js:
-  - "12.16.3"
-dist: trusty
-sudo: required
-branches:
-  only:
-      - master
+  - 12.16.3
 before_script:
       - npm install -g @angular/cli
 script:
   - ng lint
-- ng test
-- ng build
+  - ng test
+  - ng build
