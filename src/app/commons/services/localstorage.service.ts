@@ -3,7 +3,6 @@ import {Product} from '../model/product';
 import {Category} from '../model/category';
 import {CartItem} from '../model/cart';
 import {Language} from '../translations/language';
-import {isNotNullOrUndefined} from 'codelyzer/util/isNotNullOrUndefined';
 
 const CART_KEY = 'customer-cart';
 const FAV_PRODUCT_KEY = 'customer-fav-product';

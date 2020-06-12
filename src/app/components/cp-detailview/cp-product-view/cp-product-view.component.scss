@@ -19,13 +19,17 @@ cp-product-view {
   }
 
   .properties {
-    //margin-left: 20%;
-    //margin-right: 20%;
     .value-box {
       display: grid;
       grid-template-columns: repeat(auto-fit, 1fr);
-      .name{}
-      .value{}
+
+      .name {
+        font-weight: bold;
+      }
+
+      .value {
+        font-weight: normal;
+      }
     }
   }
 
@@ -42,8 +46,6 @@ cp-product-view {
   }
 
   .description {
-    //margin-left: 0rem;
-    //margin-right: 0rem;
     font-size: $font-size-large;
   }
 

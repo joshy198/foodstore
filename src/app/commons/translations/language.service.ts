@@ -24,8 +24,12 @@ export class LanguageService {
         case 'de-DE':
           this.language = Language.DE;
           break;
+        case 'de_AT':
+          this.language = Language.AT;
+          break;
         default:
           this.language = Language.EN;
+          break;
       }
     } else {
     }

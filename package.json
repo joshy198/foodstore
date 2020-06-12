@@ -5,11 +5,11 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "ng lint & ng test --code-coverage & sonar-scanner",
+    "test": "ng lint & ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "verifyForPush": "ng lint & ng test & ng build",
-    "sonar": "sonar-scanner"
+    "verifyForPush": "ng lint & ng build & ng test --code-coverage & sonar-scanner",
+    "sonar": "ng test --code-coverage & sonar-scanner"
   },
   "private": true,
   "dependencies": {

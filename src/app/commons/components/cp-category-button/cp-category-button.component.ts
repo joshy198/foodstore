@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
 import {Category} from '../../model/category';
 import {AppTranslations} from '../../translations/app-translations';
 import {FavouriteStyle} from './favourite-style';

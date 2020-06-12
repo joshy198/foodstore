@@ -1,6 +1,6 @@
 import {OsStyle} from '../enums/os-style';
 import {DeviceDetectorService} from 'ngx-device-detector';
-import {HostListener, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ScreenType} from '../enums/screen-type';
 
 @Injectable()
