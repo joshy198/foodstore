@@ -3,6 +3,7 @@
 # compiled output
 /dist
 /tmp
+/coverage
 /out-tsc
 # Only exists if Bazel was run
 /bazel-out
@@ -50,3 +51,7 @@ Thumbs.db
 *.iws
 *.iml
 *.ipr
+
+# sonarqube
+.scannerwork
+
