@@ -15,7 +15,7 @@ script:
 #  - ng build
 #  - ng test
 #  - if: branch == master || branch == /^release-.*$/
-  - if: branch == master
+  if: branch = master
       script:
       - echo "$DOCKER_PW" | docker login --username $DOCKER_USER --password-stdin
       - docker build -f Dockerfile -t $DOCKER_USER/foodstore:latest ./
