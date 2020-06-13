@@ -29,13 +29,13 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 
-#DOCUMENTATION
+##DOCUMENTATION
 We are currently using TravisCi, DockerHub and SonarQube
 
 Some sources we used for setup:
-[Setup SonarQube with angular](https://medium.com/@learning.bikash/angular-code-coverage-with-sonarqube-d2283442080b).
-[Setup of Travis for Angular](https://medium.com/angular-in-depth/the-angular-devops-series-ct-ci-with-travis-ci-and-github-pages-3c02664f078).
-[Setup of Docker for Angular](https://mherman.org/blog/dockerizing-an-angular-app/).
+- [Setup SonarQube with angular](https://medium.com/@learning.bikash/angular-code-coverage-with-sonarqube-d2283442080b).
+- [Setup of Travis for Angular](https://medium.com/angular-in-depth/the-angular-devops-series-ct-ci-with-travis-ci-and-github-pages-3c02664f078).
+- [Setup of Docker for Angular](https://mherman.org/blog/dockerizing-an-angular-app/).
 
 
 We mainly used the informations from previous exercises and also decided to rely mostly on these tools, as we got some imput on how to use
