@@ -10,12 +10,13 @@ branches:
         - master
         - /^release-.*$/
         - /^bugfix-.*$/
-script:
-  - ng lint
-  - ng build
-  - ng test
+# script:
+#  - ng lint
+#  - ng build
+#  - ng test
 on:
-    branch: master
+    branches:
+      - master
     script:
       - echo "$DOCKER_PW" | docker login --username $DOCKER_USER --password-stdin
       - docker build -f Dockerfile -t $DOCKER_USER/foodstore:latest ./
