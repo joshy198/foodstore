@@ -14,7 +14,7 @@ script:
   - ng lint
   - ng build
   - ng test
-  - if [ branch == master || branch == /^release-.*$/ ]; then
+  if: branch = master || branch = /^release-.*$/ ; then
       echo "$DOCKER_PW" | docker login --username $DOCKER_USER --password-stdin;
       docker build -f Dockerfile -t $DOCKER_USER/foodstore:latest ./;
       GIT_SHA="$(git rev-parse --short HEAD)";
