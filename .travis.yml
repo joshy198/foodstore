@@ -11,7 +11,7 @@ branches:
         - /^release-.*$/
         - /^bugfix-.*$/
 script:
-  - ng lint NO TEST TILL SCRIPT WORKS AS EXPECTED!
+  - ng lint
   - ng build
   - ng test
 on:
