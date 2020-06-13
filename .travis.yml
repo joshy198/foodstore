@@ -3,6 +3,8 @@ node_js:
   - 12.16.3
 addons:
   chrome: stable
+env:
+  - BRANCHNAME = branch
 before_script:
       - npm install -g @angular/cli
 branches:
@@ -14,4 +16,9 @@ script:
   - ng lint
   - ng build
   - ng test
-  - if [ branch == master || branch == /^release-.*$/ ]; then echo "$DOCKER_PW" | docker login --username $DOCKER_USER --password-stdin; docker build -f Dockerfile -t $DOCKER_USER/foodstore:latest ./; GIT_SHA="$(git rev-parse --short HEAD)"; docker tag $DOCKER_USER/foodstore:latest $DOCKER_USER/foodstore:$GIT_SHA; docker push $DOCKER_USER/foodstore:latest; docker push $DOCKER_USER/foodstore:$GIT_SHA; fi
+  - echo "$BRANCHNAME"
+  - echo branch
+  - if [ branch == master || branch == /^release-.*$/ ]; then echo "$DOCKER_PW" | docker login --username $DOCKER_USER --password-stdin; docker build -f Dockerfile -t $DOCKER_USER/foodstore:latest ./; GIT_SHA="$(git rev-parse --short HEAD)"; docker tag $DOCKER_USER/foodstore:latest $DOCKER_USER/foodstore:$GIT_SHA; docker push $DOCKER_USER/foodstore:latest; docker push $DOCKER_USER/foodstore:$GIT_SHA;
+    else
+      echo "THIS IF DOES NOT WHAT IT'S SUPPOSED TO";
+    fi
