@@ -38,7 +38,6 @@ export class ItemElementComponent implements OnInit {
     setTimeout(() => {
       this.timeout -= 50;
       if (this.timeout > 0) {
-        console.log('Fresh!');
         this.refreshTimeout();
       } else {
         this.isAdded = false;
