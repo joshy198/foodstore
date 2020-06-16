@@ -8,18 +8,30 @@ cp-product-overview {
       display: flex;
       justify-content: center;
       flex: 1;
+
       .layout-container {
         display: inline-grid;
         flex-wrap: wrap;
         grid-gap: 10px;
         grid-template-columns: repeat(4, 1fr);
       }
-      @media screen and (min-width: $screen-pc-medium) and(max-width: $screen-pc-high){
+
+      @media screen and (min-width: $screen-pc-medium) and(max-width: $screen-pc-medium) {
         .layout-container {
           grid-template-columns: repeat(5, 1fr);
         }
       }
-      @media screen and (min-width: $screen-pc-high){
+      @media screen and (min-width: $screen-pc-medium) and(max-width: $screen-pc-medium-high) {
+        .layout-container {
+          grid-template-columns: repeat(6, 1fr);
+        }
+      }
+      @media screen and (min-width: $screen-pc-medium-high) and(max-width: $screen-pc-high) {
+        .layout-container {
+          grid-template-columns: repeat(7, 1fr);
+        }
+      }
+      @media screen and (min-width: $screen-pc-high+3) {
         .layout-container {
           grid-template-columns: repeat(8, 1fr);
         }
