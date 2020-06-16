@@ -112,21 +112,13 @@ export class MainviewComponent implements OnInit, OnDestroy {
   public getFavouriteStyle(c: Category): FavouriteStyle {
     if (this.favCategories.filter(cat => cat.key === c.key).length > 0) {
       if (this.favProducts.filter(p => p.category.key === c.key).length > 0) {
-        if (c.content === 'Essentials') {
           return FavouriteStyle.PARTIAL_FULL;
-        }
       }
-      if (c.content === 'Essentials') {
         return FavouriteStyle.FULL;
-      }
     } else if (this.favProducts.filter(p => p.category.key === c.key).length > 0) {
-      if (c.content === 'Essentials') {
         return FavouriteStyle.PARTIAL;
-      }
     }
-    if (c.content === 'Essentials') {
       return FavouriteStyle.NONE;
-    }
   }
 
 }
